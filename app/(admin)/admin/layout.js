@@ -1,3 +1,4 @@
+import { signOut } from "@/auth"
 import Link from "next/link"
 import {
   Bell,
@@ -185,7 +186,10 @@ export default function Layout({ children }) {
                 <DropdownMenuItem>Settings</DropdownMenuItem>
                 <DropdownMenuItem>Support</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem><button className="text-red-500">Logout</button></DropdownMenuItem>
+                <DropdownMenuItem><form action={async () => {
+                  "use server";
+                  await signOut()
+                }}><button className="text-red-500" type="submit">Logout</button></form></DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </header>

@@ -38,7 +38,6 @@ import {
 import Link from "next/link"
 import { getProducts } from "@/lib/actions"
 import { dateFormat } from "@/lib/format"
-// import { dateFormat } from "../../helper/format"
 
 export default async function Page() {
   const products = await getProducts()
@@ -68,8 +67,8 @@ export default async function Page() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {products.map((product) => (
-            <TableRow key={product._id}>
+          {products && products.map((product, index) => (
+            <TableRow key={index}>
               <TableCell>{products.indexOf(product) + 1}</TableCell>
               <TableCell className="hidden sm:table-cell">
                 <Image
@@ -89,7 +88,7 @@ export default async function Page() {
               <TableCell className="hidden md:table-cell">${product?.price}</TableCell>
               <TableCell className="hidden md:table-cell">{product?.user?.name}</TableCell>
               <TableCell className="hidden md:table-cell">
-                {dateFormat(product?.createdAt)}
+                {dateFormat(product.createdAt)}
               </TableCell>
               <TableCell>
                 <DropdownMenu>
@@ -102,7 +101,7 @@ export default async function Page() {
                   <DropdownMenuContent align="end">
                     <DropdownMenuLabel>Actions</DropdownMenuLabel>
                     <DropdownMenuItem>
-                      <Link href="/admin/products/edit" state={{ id: product._id }}>Edit</Link>
+                      <Link href={`/admin/products/edit/${product._id.toString()}`}>Edit</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem><button type="button">Delete</button></DropdownMenuItem>
                   </DropdownMenuContent>
@@ -113,5 +112,5 @@ export default async function Page() {
         </TableBody>
       </Table>
     </div>
-  </div>;
+  </div >;
 }
