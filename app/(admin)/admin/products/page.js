@@ -1,4 +1,5 @@
 import Image from "next/image"
+import DeleteButton from "./deleteButton"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -103,7 +104,9 @@ export default async function Page() {
                     <DropdownMenuItem>
                       <Link href={`/admin/products/edit/${product._id.toString()}`}>Edit</Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem><button type="button">Delete</button></DropdownMenuItem>
+                    <DropdownMenuItem>
+                      <DeleteButton id={product._id.toString()}>Delete</DeleteButton>
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </TableCell>
