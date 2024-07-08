@@ -25,6 +25,7 @@ export default function LoginPage() {
   async function handleSumbit(formData) {
     startTransition(async () => {
       const result = await authenticateUser(formData)
+      // TODO: Fix NEXT_REDIRECT ERROR
       console.log(result)
       if (result?.error) {
         toast({

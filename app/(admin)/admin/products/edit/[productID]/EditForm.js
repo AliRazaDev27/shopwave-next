@@ -75,7 +75,7 @@ export default function EditForm({ _currentProduct, _categories }) {
               <div className="grid grid-cols-2 gap-2 items-center">
                 <div>
                   <Label htmlFor="categories">Category</Label>
-                  <Select id="categories" required name="categories" defaultValue={currentProduct?.category?._id}>
+                  <Select id="categories" required name="category" defaultValue={currentProduct?.category?._id}>
                     <SelectTrigger className="">
                       <SelectValue placeholder="Select a Category" />
                     </SelectTrigger>
