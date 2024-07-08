@@ -28,10 +28,13 @@ import { Button } from "@/components/ui/button"
 export function ShopControlls({ _categories }) {
   console.log(_categories)
   const searchParams = useSearchParams()
+  const searchTerm = searchParams.get("search")
+  const categoryTerm = searchParams.get("categorySlug")
+  const sortTerm = searchParams.get("sort")
   const router = useRouter()
-  const [selectedCategory, setSelectedCategory] = useState("")
-  const [sortOption, setSortOption] = useState("newest")
-  const [search, setSearch] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState(categoryTerm || "")
+  const [sortOption, setSortOption] = useState(sortTerm || "newest")
+  const [search, setSearch] = useState(searchTerm || "")
   const data = JSON.parse(_categories)
   const categories = data?.categories || data
   console.log(data)
@@ -44,7 +47,7 @@ export function ShopControlls({ _categories }) {
   function handleFilter() {
     console.log("filter")
     const data = {
-      page: searchParams.get("page") || 1,
+      page: 1,
       search: search,
       categorySlug: selectedCategory,
       sort: sortOption,

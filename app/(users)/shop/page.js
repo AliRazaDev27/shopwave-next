@@ -4,14 +4,34 @@ import {
   PaginationEllipsis,
   PaginationItem,
   PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 } from "@/components/ui/pagination"
 import CardProduct from "@/components/cardProduct"
-import { getProducts } from "@/lib/actions"
-export default async function Page() {
-  const products = await getProducts()
-  console.log(products[0])
+import { getProductsByQuery } from "@/lib/actions"
+import { getCategories } from "@/lib/actions"
+import { ShopControlls } from "@/components/shop-controlls"
+export default async function Page({ searchParams }) {
+  const { page = 1 } = searchParams
+  const { search = "" } = searchParams;
+  const { categorySlug = "" } = searchParams
+  const { sort = "" } = searchParams
+  const { products, count } = await getProductsByQuery(page, search, categorySlug, sort)
+  const categories = await getCategories()
+  console.log(categories)
+  function getPreviousPage() {
+    if (page > 1) {
+      return `/shop?page=${parseInt(page) - 1}&search=${search}&categorySlug=${categorySlug}&sort=${sort}`
+    }
+  }
+  function getNextPage() {
+    if (page < count / 12) {
+      return `/shop?page=${parseInt(page) + 1}&search=${search}&categorySlug=${categorySlug}&sort=${sort}`
+    }
+  }
   return (
     <div className="">
+      <ShopControlls _categories={JSON.stringify(categories)} />
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
         {
           products.map((product) => {
@@ -21,35 +41,32 @@ export default async function Page() {
           })
         }
       </div>
-      {/* TODO: Pagination */}
-      {/* <div className="my-4"> */}
-      {/*   <Pagination> */}
-      {/*     <PaginationContent className="flex gap-2"> */}
-      {/*       <PaginationItem> */}
-      {/*         <button type="button" hidden={currentPage === 1} onClick={() => { setCurrentPage(currentPage - 1) }}>Previous</button> */}
-      {/*       </PaginationItem> */}
-      {/*       <PaginationItem> */}
-      {/*         <PaginationLink href="#"> */}
-      {/*           <button type="button" hidden={currentPage === 1} onClick={(e) => { setCurrentPage(parseInt(e.target.innerText)); }}>{currentPage - 1}</button> */}
-      {/*         </PaginationLink> */}
-      {/*       </PaginationItem> */}
-      {/*       <PaginationItem> */}
-      {/*         <button type="button" className="px-2 py-1 rounded-md hover:bg-red-300 border-2 border-orange-700" disabled>{currentPage}</button> */}
-      {/*       </PaginationItem> */}
-      {/*       <PaginationItem> */}
-      {/*         <PaginationLink href="#"> */}
-      {/*           <button type="button" hidden={currentPage === numberOfPages} onClick={(e) => { setCurrentPage(parseInt(e.target.innerText)); }}>{currentPage + 1}</button> */}
-      {/*         </PaginationLink> */}
-      {/*       </PaginationItem> */}
-      {/*       <PaginationItem> */}
-      {/*         <PaginationEllipsis /> */}
-      {/*       </PaginationItem> */}
-      {/*       <PaginationItem> */}
-      {/*         <button type="button" hidden={currentPage === numberOfPages} onClick={() => { setCurrentPage(currentPage + 1) }}>Next</button> */}
-      {/*       </PaginationItem> */}
-      {/*     </PaginationContent> */}
-      {/*   </Pagination> */}
-      {/* </div> */}
+      <div className="my-4">
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <PaginationPrevious href={getPreviousPage()} />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">1</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#" isActive>
+                2
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationLink href="#">3</PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationNext href={getNextPage()} />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
     </div>
   );
 }
