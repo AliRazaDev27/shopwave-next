@@ -26,9 +26,9 @@ export default async function Page({ params }) {
           <p className="text-muted-foreground">{product?.description}</p>
         </div>
         <div className="text-4xl font-bold"><Badge className="text-xl bg-orange-600">$ {product?.price}</Badge></div>
-        {/* <Suspense fallback={<div>Loading...</div>}> */}
-        {/*   <CartControlls productID={product._id.toString()} /> */}
-        {/* </Suspense> */}
+        <Suspense fallback={<div>Loading...</div>}>
+          <CartControlls product={JSON.stringify(product)} />
+        </Suspense>
       </div>
 
     </div>

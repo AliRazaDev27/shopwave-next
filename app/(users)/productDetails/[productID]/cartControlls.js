@@ -1,7 +1,13 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { useState, useEffect, useContext } from "react"
+import { CartContext } from "@/app/cartContext"
 import { Button } from "@/components/ui/button"
-export function CartControlls({ productID }) {
+import { useToast } from "@/components/ui/use-toast"
+export function CartControlls({ product }) {
+  const { toast } = useToast()
+  const router = useRouter()
+  const { addToCart } = useContext(CartContext)
   const [quantity, setQuantity] = useState(1)
   const handleIncrement = () => {
     setQuantity(quantity + 1)
@@ -11,9 +17,17 @@ export function CartControlls({ productID }) {
       setQuantity(quantity - 1)
     }
   }
-  const handleSubmit = (product, quantity) => {
-    product.quantity = quantity
-    navigate("/cart")
+  const handleSubmit = () => {
+    let _product = JSON.parse(product)
+    _product.quantity = quantity
+    addToCart(_product)
+    toast({
+      title: "Added to cart",
+      description: "Product added to cart successfully",
+      variant: "success",
+      className: "bg-green-600 text-white"
+    })
+    router.push("/cart")
   }
   return (
     <div className="flex flex-col gap-4">
@@ -34,7 +48,7 @@ export function CartControlls({ productID }) {
           +
         </Button>
       </div>
-      <Button size="lg" className="w-full" type="button">
+      <Button size="lg" className="w-full bg-orange-500 text-white" type="button" onClick={() => handleSubmit()}>
         Add to Cart
       </Button>
     </div>

@@ -29,7 +29,7 @@ export default function CardProduct({ product }) {
         <CardDescription>{product?.description}</CardDescription>
       </CardContent>
       <CardFooter className="flex justify-center">
-        <Link href={`/addToCart/${product._id}`}>Add to Cart</Link>
+        <Link href={`/productDetails/${product._id}`} className="bg-orange-600 text-white px-8 py-2 rounded-md hover:bg-orange-700">Add to Cart</Link>
       </CardFooter>
     </Card>
   )
