@@ -1,4 +1,5 @@
 "use client"
+import { useRouter } from "next/navigation"
 import { useState, useTransition, useEffect } from "react"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
@@ -22,33 +23,39 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { addProduct } from "@/lib/actions"
 import { getCategories } from "@/lib/actions"
+import { useToast } from "@/components/ui/use-toast"
 const initalState = {
   message: "",
 }
 export default function Page() {
-  const [pending, setPending] = useState(false)
-  const [error, setError] = useState(null)
+  const { toast } = useToast()
+  const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [categories, setCategories] = useState([])
   console.log(categories)
-  if (error) {
-    alert(error)
-    setError(null)
-  }
   async function handleSumbit(formData) {
-    startTransition(() => {
-      setPending(true)
-    })
-    try {
+    startTransition(async () => {
       const result = await addProduct(formData)
-      if (!result.ok) {
-        setError(result.error)
+      if (result.error) {
+        toast({
+          title: "Error",
+          description: result.error,
+          variant: "destructive",
+          duration: 2000,
+        })
       }
-      console.log(result)
-      setPending(false)
-    } catch (err) {
-      console.log(err)
-    }
+      if (result.ok) {
+        toast({
+          title: "Success",
+          description: "Product Created",
+          variant: "success",
+          duration: 2000,
+        })
+        setTimeout(() => {
+          router.push("/admin/products")
+        }, 2000)
+      }
+    })
   }
 
   useEffect(() => {
@@ -81,8 +88,8 @@ export default function Page() {
 
               <div className="grid grid-cols-2 gap-2 items-center">
                 <div>
-                  <Label htmlFor="categories">Category</Label>
-                  <Select id="categories" required name="categories">
+                  <Label htmlFor="category">Category</Label>
+                  <Select id="category" required name="category">
                     <SelectTrigger className="">
                       <SelectValue placeholder="Select a Category" />
                     </SelectTrigger>
