@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge"
+import OrderStatus from "@/components/orderStatus"
 import {
   Card,
   CardContent,
@@ -50,9 +51,7 @@ export default async function Page() {
                   </div>
                 </TableCell>
                 <TableCell className="hidden sm:table-cell">
-                  <Badge className="text-xs" variant="destructive">
-                    {order?.status}
-                  </Badge>
+                  <OrderStatus status={order?.status} />
                 </TableCell>
                 <TableCell className="hidden md:table-cell">{dateFormat(order?.createdAt)}</TableCell>
                 <TableCell className="text-right">${order?.total}</TableCell>

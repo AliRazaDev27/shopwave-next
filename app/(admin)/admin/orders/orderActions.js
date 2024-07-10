@@ -28,7 +28,7 @@ import { getOrder, updateOrder, deleteOrder } from "@/lib/actions"
 import { useState, useTransition } from "react"
 import { useToast } from "@/components/ui/use-toast"
 export default function OrderActions({ id, _status }) {
-  const [status, setStatus] = useState(_status)
+  const [status, setStatus] = useState(_status.toLowerCase())
   const [open, setOpen] = useState(false)
   const { toast } = useToast()
   const [isPending, startTransition] = useTransition()
