@@ -13,10 +13,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Toaster />
         <CartProvider>
           <main>{children}</main>
         </CartProvider>
-        <Toaster />
       </body>
     </html>
   );
