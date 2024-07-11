@@ -34,6 +34,7 @@ export default async function Page() {
         <Table>
           <TableHeader>
             <TableRow>
+              <TableHead>Sr.</TableHead>
               <TableHead>Customer</TableHead>
               <TableHead className="hidden sm:table-cell">Status</TableHead>
               <TableHead className="hidden md:table-cell">Date</TableHead>
@@ -42,8 +43,9 @@ export default async function Page() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {orders.map((order) => (
+            {orders.map((order, index) => (
               <TableRow key={order._id} className="bg-accent">
+                <TableCell>{index + 1}</TableCell>
                 <TableCell>
                   <div className="font-medium">{order?.user?.name}</div>
                   <div className="hidden text-sm text-muted-foreground md:inline">

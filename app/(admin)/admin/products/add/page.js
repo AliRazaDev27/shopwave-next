@@ -49,11 +49,12 @@ export default function Page() {
           title: "Success",
           description: "Product Created",
           variant: "success",
+          className: "bg-green-600 text-white",
           duration: 2000,
         })
         setTimeout(() => {
           router.push("/admin/products")
-        }, 2000)
+        }, 500)
       }
     })
   }

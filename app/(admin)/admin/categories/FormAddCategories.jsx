@@ -1,5 +1,5 @@
 "use client"
-import { useState, useTransition } from "react"
+import { useTransition } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -9,31 +9,37 @@ import {
 }
   from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { addCategory } from "@/lib/actions"
+import { createCategory } from "@/lib/actions"
+import { useToast } from "@/components/ui/use-toast"
 
 export default function FormAddCategories() {
-  const [add, setAdd] = useState(false)
-  const [error, setError] = useState(null)
   const [isPending, startTransition] = useTransition()
-  if (error) {
-    alert(error)
-    setError(null)
-  }
+  const { toast } = useToast()
   async function handleSubmit(formData) {
-    startTransition(() => {
-      setAdd(true)
+    startTransition(async () => {
+      const data = await createCategory(formData)
+      if (data.error) {
+        toast({
+          title: "Error",
+          description: data.error,
+          variant: "destructive",
+        })
+      }
+      else {
+        toast({
+          title: "Success",
+          description: "Category created successfully",
+          variant: "success",
+        })
+      }
     })
-    const data = await addCategory(formData)
-    if (!data.ok) {
-      setError(data.error)
-    }
-    setAdd(false)
+    // TODO: Add form reset feature
   }
   return (
     <form action={handleSubmit}>
       <Card x-chunk="dashboard-04-chunk-1">
         <CardHeader>
-          <CardTitle>Category</CardTitle>
+          <CardTitle>Create New Category</CardTitle>
         </CardHeader>
         <CardContent className="flex gap-4">
           <Input

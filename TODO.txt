@@ -1,6 +1,7 @@
-- [] Add delete functionality on admin/products
-- [] Add edit functionality on admin/products
+- [x] Add delete functionality on admin/products
+- [x] Add edit functionality on admin/products
 - [] Add edit functionality on admin/categories
+- [] Add user page on admin
 - [] Add delete functionality on admin/categories
 - [] Add error pages and loading skeltons
 - [] Add Suspense Boundries

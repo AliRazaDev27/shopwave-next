@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation"
 import { useToast } from "@/components/ui/use-toast"
 import Image from "next/image"
 import { useState, useTransition } from "react"
-import { editProduct } from "@/lib/actions"
+import { updateProduct } from "@/lib/actions"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import {
@@ -29,15 +29,13 @@ export default function EditForm({ _currentProduct, _categories }) {
   const router = useRouter()
   const currentProduct = JSON.parse(_currentProduct)
   const categories = JSON.parse(_categories)
-  const editProductWithID = editProduct.bind(null, currentProduct._id)
+  const updateProductWithID = updateProduct.bind(null, currentProduct._id)
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState(null)
   async function handleSubmit(formData) {
     startTransition(async () => {
-      const result = await editProductWithID(formData)
-      console.log(result)
+      const result = await updateProductWithID(formData)
       if (result.error) {
-        // setError(result.error)
         toast({
           title: "Error",
           description: result.error,
@@ -50,6 +48,7 @@ export default function EditForm({ _currentProduct, _categories }) {
           title: "Success",
           description: "Product Updated",
           variant: "success",
+          className: "bg-green-600 text-white",
           duration: 2000,
         })
         router.push("/admin/products")

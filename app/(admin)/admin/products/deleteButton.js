@@ -9,20 +9,20 @@ export default function DeleteButton({ id }) {
   async function handleDelete() {
     startTransition(async () => {
       const result = await deleteProduct(id)
-      console.log(result)
-      if (result.ok) {
-        toast({
-          title: "Success",
-          description: "Product Deleted",
-          variant: "success",
-          duration: 2000,
-        })
-      }
-      else {
+      if (result.error) {
         toast({
           title: "Error",
           description: result.error,
           variant: "destructive",
+          duration: 2000,
+
+        })
+      }
+      else {
+        toast({
+          title: "Success",
+          description: "Product Deleted Successfully",
+          className: "bg-green-600 text-white",
           duration: 2000,
         })
       }

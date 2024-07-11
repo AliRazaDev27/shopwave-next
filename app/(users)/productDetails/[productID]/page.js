@@ -17,6 +17,8 @@ export default async function Page({ params }) {
           alt="Product Image"
           fill
           priority
+          placeholder="blur"
+          blurDataURL="/placeholder.svg"
           className="object-contain border w-full rounded-lg overflow-hidden" />
       </div>
       <div className="grid gap-4 md:gap-6 py-4 w-[80%] mx-auto">

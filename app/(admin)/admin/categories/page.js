@@ -1,15 +1,25 @@
+import DeleteCategory from "./delete"
+import EditCategory from "./edit"
 import { MoreHorizontal } from "lucide-react"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -43,9 +53,9 @@ export default async function Page() {
     <div className="border-2">
       <Card>
         <CardHeader>
-          <CardTitle>Products</CardTitle>
+          <CardTitle>All Categories</CardTitle>
           <CardDescription>
-            Manage your products and view their sales performance.
+            Manage your products categories.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -77,50 +87,50 @@ export default async function Page() {
                   </TableCell>
                   <TableCell>
                     <Dialog>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button aria-haspopup="true" size="icon" variant="ghost">
-                            <MoreHorizontal className="h-4 w-4" />
-                            <span className="sr-only">Toggle menu</span>
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                      <AlertDialog>
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button aria-haspopup="true" size="icon" variant="ghost">
+                              <MoreHorizontal className="h-4 w-4" />
+                              <span className="sr-only">Toggle menu</span>
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end">
+                            <DropdownMenuLabel>Actions</DropdownMenuLabel>
 
-                          <DialogTrigger asChild>
+                            <DialogTrigger asChild>
+                              <DropdownMenuItem>
+                                <Button variant="outline" type="button">Edit</Button>
+                              </DropdownMenuItem>
+                            </DialogTrigger>
                             <DropdownMenuItem>
-                              <button type="button">Edit</button>
+                              <AlertDialogTrigger asChild>
+                                <Button variant="outline">Delete</Button>
+                              </AlertDialogTrigger>
                             </DropdownMenuItem>
-                          </DialogTrigger>
-                          <DropdownMenuItem>
-                            <button type="button">Delete</button>
-                          </DropdownMenuItem>
 
-                        </DropdownMenuContent>
-                      </DropdownMenu>
-
-                      <DialogContent className="sm:max-w-[425px]">
-                        <DialogHeader>
-                          <DialogTitle>Edit Category</DialogTitle>
-                        </DialogHeader>
-                        <div className="grid gap-4 py-4">
-                          <div className="grid grid-cols-4 items-center gap-4">
-                            <Label htmlFor="username" className="text-right">
-                              Name
-                            </Label>
-                            <Input
-                              id="username"
-                              name="username"
-                              defaultValue=""
-                              placeholder="Name"
-                              className="col-span-3"
-                            />
-                          </div>
-                        </div>
-                        <DialogFooter>
-                          <Button type="submit">Save changes</Button>
-                        </DialogFooter>
-                      </DialogContent>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
+                        <AlertDialogContent>
+                          <AlertDialogHeader>
+                            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                              This action cannot be undone. This will permanently delete your
+                              account and remove your data from our servers.
+                            </AlertDialogDescription>
+                          </AlertDialogHeader>
+                          <AlertDialogFooter>
+                            <AlertDialogCancel>Cancel</AlertDialogCancel>
+                            <AlertDialogAction className=" px-0"><DeleteCategory id={category._id} /></AlertDialogAction>
+                          </AlertDialogFooter>
+                        </AlertDialogContent>
+                        <DialogContent className="sm:max-w-[425px]">
+                          <DialogHeader>
+                            <DialogTitle>Edit Category</DialogTitle>
+                          </DialogHeader>
+                          <EditCategory id={category._id} />
+                        </DialogContent>
+                      </AlertDialog>
                     </Dialog>
                   </TableCell>
                 </TableRow>
@@ -130,7 +140,7 @@ export default async function Page() {
         </CardContent>
         <CardFooter>
           <div className="text-xs text-muted-foreground">
-            Showing <strong>1-10</strong> of <strong>{categories && categories.length}</strong> products
+            Showing <strong>{categories.length}</strong> of <strong>{categories.length}</strong> categories
           </div>
         </CardFooter>
       </Card>

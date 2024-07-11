@@ -1,3 +1,4 @@
+import { buttonVariants } from "@/components/ui/button"
 import Image from "next/image"
 import DeleteButton from "./deleteButton"
 import { Button } from "@/components/ui/button"
@@ -42,10 +43,10 @@ import { dateFormat } from "@/lib/format"
 
 export default async function Page() {
   const products = await getProducts()
-  return <div className="border border-red-600">
-    <div className="flex justify-between items-center">
+  return <div className="">
+    <div className="flex justify-between items-center my-2 px-2">
       <h2 className="text-xl font-semibold md:text-2xl">Products</h2>
-      <Link href="/admin/products/add"><Button>Add Product</Button></Link>
+      <Link href="/admin/products/add"><Button className="me-8 ">Add Product</Button></Link>
     </div>
     <div>
       <Table>
@@ -102,7 +103,7 @@ export default async function Page() {
                   <DropdownMenuContent align="end">
                     <DropdownMenuLabel>Actions</DropdownMenuLabel>
                     <DropdownMenuItem>
-                      <Link href={`/admin/products/edit/${product._id.toString()}`}>Edit</Link>
+                      <Link className={buttonVariants({ variant: "default" })} href={`/admin/products/edit/${product._id.toString()}`}>Edit</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       <DeleteButton id={product._id.toString()}>Delete</DeleteButton>
