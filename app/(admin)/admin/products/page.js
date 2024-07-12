@@ -103,7 +103,7 @@ export default async function Page() {
                   <DropdownMenuContent align="end">
                     <DropdownMenuLabel>Actions</DropdownMenuLabel>
                     <DropdownMenuItem>
-                      <Link className={buttonVariants({ variant: "default" })} href={`/admin/products/edit/${product._id.toString()}`}>Edit</Link>
+                      <Link className={buttonVariants({ variant: "outline", className: "w-full bg-blue-600 text-white" })} href={`/admin/products/edit/${product._id.toString()}`}>Edit</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       <DeleteButton id={product._id.toString()}>Delete</DeleteButton>

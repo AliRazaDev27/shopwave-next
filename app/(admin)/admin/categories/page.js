@@ -100,12 +100,12 @@ export default async function Page() {
 
                             <DialogTrigger asChild>
                               <DropdownMenuItem>
-                                <Button variant="outline" type="button">Edit</Button>
+                                <Button variant="outline" className="bg-blue-600 text-white w-full" type="button">Edit</Button>
                               </DropdownMenuItem>
                             </DialogTrigger>
                             <DropdownMenuItem>
                               <AlertDialogTrigger asChild>
-                                <Button variant="outline">Delete</Button>
+                                <Button variant="outline" className="bg-red-600 text-white w-full">Delete</Button>
                               </AlertDialogTrigger>
                             </DropdownMenuItem>
 

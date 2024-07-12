@@ -40,7 +40,6 @@ import { useState, useTransition } from "react"
 import { useToast } from "@/components/ui/use-toast"
 import { updateUser, deleteUser } from "@/lib/actions"
 export default function UserActions({ id, _user }) {
-  console.log(_user)
   const [name, setName] = useState(_user?.name)
   const [email, setEmail] = useState(_user?.email)
   const [role, setRole] = useState(_user?.role === 1 ? "admin" : "user")
@@ -50,7 +49,6 @@ export default function UserActions({ id, _user }) {
   const [isPending, startTransition] = useTransition()
   async function handleDelete(id) {
     startTransition(async () => {
-      console.log(id)
       const res = await deleteUser(id)
       if (res.error) {
         toast({
@@ -70,7 +68,6 @@ export default function UserActions({ id, _user }) {
     })
   }
   async function handleUpdate() {
-    console.log(`name ${name} email ${email} role ${role}`)
     startTransition(async () => {
       const res = await updateUser(id, { name, email, role })
       if (res.error) {
@@ -169,8 +166,8 @@ export default function UserActions({ id, _user }) {
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction><Button type="button" onClick={() => handleUpdate()}>Continue</Button></AlertDialogAction>
+            <AlertDialogCancel className="hover:outline outline-black">Cancel</AlertDialogCancel>
+            <AlertDialogAction className="px-0"><Button type="button" className="hover:bg-neutral-700" onClick={() => handleUpdate()}>Continue</Button></AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

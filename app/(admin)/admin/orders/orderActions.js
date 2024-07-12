@@ -19,7 +19,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, DropdownMenuLabel } from "@/components/ui/dropdown-menu"
@@ -89,11 +88,11 @@ export default function OrderActions({ id, _status }) {
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
           <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem><Link href={`/admin/orderDetails/${id}`} className={buttonVariants({ variant: "outline" })}>View Details</Link></DropdownMenuItem>
+          <DropdownMenuItem><Link href={`/admin/orderDetails/${id}`} className={buttonVariants({ variant: "outline", className: "bg-green-600 text-white w-full" })}>View Details</Link></DropdownMenuItem>
           <DialogTrigger asChild>
-            <Button variant="outline">Update Status</Button>
+            <Button variant="outline" className="bg-blue-600 text-white w-full px-0">Update Status</Button>
           </DialogTrigger>
-          <DropdownMenuItem><Button variant="outline" onClick={() => handleDelete(id)}>Delete Order</Button></DropdownMenuItem>
+          <DropdownMenuItem><Button variant="outline" className="bg-red-600 text-white w-full" onClick={() => handleDelete(id)}>Delete Order</Button></DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       <DialogContent className="sm:max-w-[425px]">

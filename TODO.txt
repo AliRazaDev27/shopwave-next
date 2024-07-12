@@ -5,3 +5,5 @@
 - [] Add delete functionality on admin/categories
 - [] Add error pages and loading skeltons
 - [] Add Suspense Boundries
+- [] pagination for products
+  

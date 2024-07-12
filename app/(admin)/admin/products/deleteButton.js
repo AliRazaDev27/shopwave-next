@@ -28,7 +28,7 @@ export default function DeleteButton({ id }) {
       }
     })
   }
-  return <div>
-    <Button onClick={handleDelete} disabled={isPending}>Delete</Button>
-  </div>
+  return (
+    <Button variant="outline" className="w-full bg-red-600 text-white" onClick={handleDelete} disabled={isPending}>Delete</Button>
+  )
 }
