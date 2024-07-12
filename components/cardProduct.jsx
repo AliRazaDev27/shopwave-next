@@ -11,20 +11,30 @@ import {
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 export default function CardProduct({ product }) {
+  console.log(product)
   async function handleAddToCart(id) {
   }
   return (
     <Card className="flex flex-col justify-between shadow-2xl shadow-neutral-400">
       <CardHeader>
-        <div className="h-72">
-          <Image className="mx-auto h-72" width={300} height={300} src={product?.picture?.picture_url} alt="product picture" />
+        <div className="h-72 relative">
+          <Image
+            className="mx-auto h-72 object-contain"
+            fill
+            src={product?.picture?.picture_url}
+            placeholder="blur"
+            blurDataURL="/placeholder.svg"
+            alt="product picture" />
         </div>
       </CardHeader>
       <CardContent>
         <CardTitle>{product?.title}</CardTitle>
         <div className="flex gap-4 py-2">
+          <Badge className="text-md bg-green-700">{product?.category?.name}</Badge>
+          <Badge className="text-md bg-blue-700">{product?.brand?.name}</Badge>
+        </div>
+        <div className="flex gap-4 py-2">
           <Badge className="font-bold text-md bg-orange-600">Rs. {product?.price}</Badge>
-          <Badge className="text-md">{product?.category?.name}</Badge>
         </div>
         <CardDescription>{product?.description}</CardDescription>
       </CardContent>
