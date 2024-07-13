@@ -59,8 +59,8 @@ export async function Header() {
             <div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="secondary" size="icon" className="rounded-full">
-                    <CircleUser className="h-5 w-5" />
+                  <Button variant="secondary" size="icon" className="rounded-full bg-blue-600 hover:bg-blue-700">
+                    <CircleUser className="h-5 w-5 text-white" />
                     <span className="sr-only">Toggle user menu</span>
                   </Button>
                 </DropdownMenuTrigger>

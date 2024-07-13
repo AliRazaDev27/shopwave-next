@@ -1,5 +1,8 @@
+import { HeroSection } from "@/components/hero-section";
 export default function Page() {
   return (
-    <div>Page is at /users</div>
+    <div>
+      <HeroSection />
+    </div>
   );
 }
