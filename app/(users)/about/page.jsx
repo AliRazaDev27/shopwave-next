@@ -17,12 +17,12 @@ export default function Page() {
           </article>
           <article>
             <p className="text-2xl lg:text-3xl font-bold text-orange-600">Our Story</p>
-            Shopwave was born out of a desire to revolutionize the way people shop online. With a team of dedicated professionals, we set out to create a platform that is user-friendly, reliable, and offers an extensive selection of products. From fashion and electronics to home goods and beauty products, we've got something for everyone.
+            Shopwave was born out of a desire to revolutionize the way people shop online. With a team of dedicated professionals, we set out to create a platform that is user-friendly, reliable, and offers an extensive selection of products. From fashion and electronics to home goods and beauty products, we have got something for everyone.
           </article>
 
           <article>
             <p className="text-2xl lg:text-3xl font-bold text-orange-600"  >Our Mission</p>
-            Our mission is simple: to provide an exceptional shopping experience that exceeds our customers' expectations. We believe in the power of choice, convenience, and quality. By partnering with top brands and trusted suppliers, we ensure that every product on our site meets our high standards.
+            Our mission is simple: to provide an exceptional shopping experience that exceeds our customers expectations. We believe in the power of choice, convenience, and quality. By partnering with top brands and trusted suppliers, we ensure that every product on our site meets our high standards.
           </article>
 
           <article>
