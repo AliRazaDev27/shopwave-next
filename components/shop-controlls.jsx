@@ -19,6 +19,7 @@ To read more about using these font, please visit the Next.js documentation:
 **/
 "use client"
 import { useSearchParams } from "next/navigation"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { useRouter } from "next/navigation"
 import { useState, useRef } from "react"
 import { Input } from "@/components/ui/input"
@@ -41,6 +42,7 @@ export function ShopControlls({ _categories }) {
   console.log(categories)
   const sortOptions = [
     { value: "newest", label: "Newest" },
+    { value: "rating", label: "Rating: High to Low" },
     { value: "low", label: "Price: Low to High" },
     { value: "high", label: "Price: High to Low" },
   ]
@@ -63,7 +65,7 @@ export function ShopControlls({ _categories }) {
   }
   return (
     (<div
-      className="flex items-center gap-4 bg-background p-4 w-[90%] mx-auto rounded-lg shadow-lg">
+      className="grid grid-cols-1 lg:grid-cols-3 items-center gap-4 bg-background p-4 w-[90%] mx-auto rounded-lg shadow-lg">
       <div className="relative flex-1">
         <div className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
         <Input
@@ -74,39 +76,45 @@ export function ShopControlls({ _categories }) {
           placeholder="Search products..."
           className="w-full pl-8 rounded-md bg-muted" />
       </div>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="flex items-center gap-2">
-            <span>{selectedCategory || "Category"}</span>
-            <ChevronDownIcon className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-[200px]">
-          <DropdownMenuItem onSelect={() => setSelectedCategory("All")}>All</DropdownMenuItem>
-          {categories.map((category) => (
-            <DropdownMenuItem key={category._id} onSelect={() => setSelectedCategory(category.slug)}>
-              {category.name.toUpperCase()}
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" className="flex items-center gap-2">
-            <span>{sortOptions.find((option) => option.value === sortOption)?.label || "Sort"}</span>
-            <ChevronDownIcon className="h-4 w-4" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-[200px]">
-          {sortOptions.map((option) => (
-            <DropdownMenuItem key={option.value} onSelect={() => setSortOption(option.value)}>
-              {option.label}
-            </DropdownMenuItem>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-      <Button onClick={() => handleFilter()}>Filter</Button>
-      <Button onClick={() => handleReset()}>Reset</Button>
+      <div className="flex flex-wrap gap-4 justify-center">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="flex items-center gap-2">
+              <span>{selectedCategory || "Category"}</span>
+              <ChevronDownIcon className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-[200px]">
+            <ScrollArea className="h-[50vh] w-full">
+              <DropdownMenuItem onSelect={() => setSelectedCategory("All")}>All</DropdownMenuItem>
+              {categories.map((category) => (
+                <DropdownMenuItem key={category._id} onSelect={() => setSelectedCategory(category.slug)}>
+                  {category.name.toUpperCase()}
+                </DropdownMenuItem>
+              ))}
+            </ScrollArea>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="flex items-center gap-2">
+              <span>{sortOptions.find((option) => option.value === sortOption)?.label || "Sort"}</span>
+              <ChevronDownIcon className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-[200px]">
+            {sortOptions.map((option) => (
+              <DropdownMenuItem key={option.value} onSelect={() => setSortOption(option.value)}>
+                {option.label}
+              </DropdownMenuItem>
+            ))}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+      <div className="flex flex-wrap justify-center gap-4 items-center ">
+        <Button className="bg-red-600 text-white" onClick={() => handleReset()}>Reset</Button>
+        <Button className="bg-blue-600 text-white" onClick={() => handleFilter()}>Filter</Button>
+      </div>
     </div>)
   );
 }

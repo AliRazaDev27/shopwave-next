@@ -1,4 +1,5 @@
 import { auth, signOut } from "@/auth"
+import CartPopover from "./cartPopover";
 import NavLinks from "./navlinks";
 import NavLinksMobile from "./navlinks.mobile.js"
 import {
@@ -25,7 +26,7 @@ export async function Header() {
   const session = await auth()
   const user = session?.user
   return (
-    <header className=" sticky top-0 flex h-16 items-center gap-4 border border-red-600 bg-background px-4 md:px-6">
+    <header className=" sticky border-b top-0 flex h-16 items-center gap-4 bg-background px-4 md:px-6 divide-x">
       <NavLinks />
       <Sheet className="bg-orange-500">
         <SheetTrigger asChild>
@@ -44,19 +45,12 @@ export async function Header() {
       </Sheet>
       <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
         <form className="ml-auto flex-1 sm:flex-initial">
-          <div className="relative rounded-full outline outline-1 outline-offset-2 w-8 h-8 flex justify-center items-center">
-            <Popover>
-              <PopoverTrigger>
-                <MdOutlineShoppingCart />
-              </PopoverTrigger>
-              <PopoverContent>Place content for the popover here.
-                <Link href="/cart" className="block mt-2 border bg-orange-500 p-2 text-white">Cart</Link>
-              </PopoverContent>
-            </Popover>
+          <div className="relative w-8 h-8 flex justify-center items-center">
+            <CartPopover />
           </div>
         </form>
         <div>
-          {user == null ?
+          {!user ?
 
             <div className="flex gap-2">
               <Button><Link href="/login">Login</Link></Button>

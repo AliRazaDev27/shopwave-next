@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import {
   Pagination,
   PaginationContent,
@@ -29,9 +30,21 @@ export default async function Page({ searchParams }) {
       return `/shop?page=${parseInt(page) + 1}&search=${search}&categorySlug=${categorySlug}&sort=${sort}`
     }
   }
+  function getPageAt(pageNumber) {
+    return `/shop?page=${pageNumber}&search=${search}&categorySlug=${categorySlug}&sort=${sort}`
+  }
   return (
-    <div className="">
+    < div className="" >
+      {
+        // TODO: Improve search pagination result visual indicators.
+      }
       <ShopControlls _categories={JSON.stringify(categories)} />
+      {
+        (search || categorySlug || sort) &&
+
+        <div className="text-end pe-6 my-4"><span className="font-bold text-xl text-orange-800">{count}</span> Results Found</div>
+
+      }
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
         {
           products.map((product) => {
@@ -41,25 +54,24 @@ export default async function Page({ searchParams }) {
           })
         }
       </div>
+      { // TODO: Improve pagination visual indicators and link generation logic
+      }
       <div className="my-4">
         <Pagination>
           <PaginationContent>
             <PaginationItem>
               <PaginationPrevious href={getPreviousPage()} />
             </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">1</PaginationLink>
+            <PaginationItem className={clsx({ hidden: parseInt(page) === 1 })}>
+              <PaginationLink href={getPageAt(parseInt(page) - 1)}>{parseInt(page) - 1}</PaginationLink>
             </PaginationItem>
             <PaginationItem>
               <PaginationLink href="#" isActive>
-                2
+                {page}
               </PaginationLink>
             </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationEllipsis />
+            <PaginationItem className={clsx({ hidden: page === count / 12 })}>
+              <PaginationLink href={getPageAt(parseInt(page) + 1)}>{parseInt(page) + 1}</PaginationLink>
             </PaginationItem>
             <PaginationItem>
               <PaginationNext href={getNextPage()} />
@@ -67,6 +79,6 @@ export default async function Page({ searchParams }) {
           </PaginationContent>
         </Pagination>
       </div>
-    </div>
+    </div >
   );
 }
