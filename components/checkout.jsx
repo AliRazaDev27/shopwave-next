@@ -41,7 +41,7 @@ export function Checkout() {
                 {cart.map((item) => (
                   <div key={item._id} className="grid grid-cols-[120px_1fr] items-center gap-6">
                     <Image
-                      src={item.picture.picture_url}
+                      src={item?.thumbnail?.picture_url}
                       alt={item.title}
                       width={120}
                       height={120}

@@ -10,16 +10,16 @@ export default async function Page({ params }) {
   return (
     <div
       className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 max-w-6xl  mx-auto mt-8" >
-      <div className="block relative h-96  border-2 border-black">
+      <div className="block relative h-96 overflow-hidden  border rounded-full shadow-lg shadow-black ">
         <Image
           // src="/placeholder.svg"
-          src={product?.picture?.picture_url}
+          src={product?.thumbnail?.picture_url}
           alt="Product Image"
           fill
           priority
           placeholder="blur"
           blurDataURL="/placeholder.svg"
-          className="object-contain border w-full rounded-lg overflow-hidden" />
+          className="object-contain w-full rounded-lg overflow-hidden" />
       </div>
       <div className="grid gap-4 md:gap-6 py-4 w-[80%] mx-auto">
         <div className="grid gap-1">

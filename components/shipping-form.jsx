@@ -13,7 +13,7 @@ import { useToast } from "@/components/ui/use-toast"
 export function ShippingForm() {
   const { toast } = useToast()
   const router = useRouter()
-  const { cart } = useContext(CartContext)
+  const { cart, clearCart } = useContext(CartContext)
   const [isPending, startTransition] = useTransition()
 
   async function handleSubmit(formData) {
@@ -40,6 +40,7 @@ export function ShippingForm() {
             className: "bg-green-600 text-white"
           })
         // TODO: mayber redirect to orders page
+        clearCart()
         router.push("/shop")
       }
 
