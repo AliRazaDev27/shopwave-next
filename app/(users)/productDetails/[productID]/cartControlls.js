@@ -48,7 +48,7 @@ export function CartControlls({ product }) {
           +
         </Button>
       </div>
-      <Button size="lg" className="w-full bg-orange-500 text-white" type="button" onClick={() => handleSubmit()}>
+      <Button size="lg" className="w-full bg-gradient-to-b from-orange-700 to-orange-500 hover:bg-gradient-to-t transition duration-1000 text-white" type="button" onClick={() => handleSubmit()}>
         Add to Cart
       </Button>
     </div>
