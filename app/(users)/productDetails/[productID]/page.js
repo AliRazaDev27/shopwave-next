@@ -45,11 +45,11 @@ export default async function Page({ params }) {
           {product?.discountPercentage.toFixed() > 0 ? (
             <>
               <div className="text-3xl font-bold">${product?.price - (product?.price * (product?.discountPercentage / 100)).toFixed()}</div>
-              <div className="text-2xl font-semibold text-muted-foreground line-through">${product?.price}</div>
+              <div className="text-2xl font-semibold text-muted-foreground line-through">${product?.price?.toFixed()}</div>
             </>
           )
             :
-            <div className="text-3xl font-bold">${product?.price}</div>
+            <div className="text-3xl font-bold">${product?.price?.toFixed()}</div>
           }
         </div>
         <div className="flex gap-8 items-center">
@@ -58,7 +58,7 @@ export default async function Page({ params }) {
             <PopoverTrigger className="bg-orange-600 p-2 rounded-full">
               <CiDeliveryTruck className="text-2xl text-white animate-[bounce_1s_ease-in_infinite]" />
             </PopoverTrigger>
-            <PopoverContent className="p-0 m-0  rounded-full overflow-hidden">
+            <PopoverContent side="top" className="p-0 m-0  rounded-full overflow-hidden">
               <div className="flex flex-col gap-2 bg-gradient-to-r from-orange-700 to-orange-400 text-md text-center font-semibold text-white p-2">
                 <p>{product?.warrantyInformation}</p>
                 <p>{product?.shippingInformation}</p>
