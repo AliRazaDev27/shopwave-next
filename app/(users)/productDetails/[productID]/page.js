@@ -44,7 +44,7 @@ export default async function Page({ params }) {
         <div className="flex gap-2 items-center">
           {product?.discountPercentage.toFixed() > 0 ? (
             <>
-              <div className="text-3xl font-bold">${product?.price - (product?.price * (product?.discountPercentage / 100)).toFixed()}</div>
+              <div className="text-3xl font-bold">${(product?.price - (product?.price * (product?.discountPercentage / 100))).toFixed()}</div>
               <div className="text-2xl font-semibold text-muted-foreground line-through">${product?.price?.toFixed()}</div>
             </>
           )
