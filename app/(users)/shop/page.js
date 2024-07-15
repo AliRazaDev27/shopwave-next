@@ -2,7 +2,6 @@ import clsx from "clsx"
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -18,8 +17,6 @@ export default async function Page({ searchParams }) {
   const { categorySlug = "" } = searchParams
   const { sort = "" } = searchParams
   const { products, count } = await getProductsByQuery(page, search, categorySlug, sort)
-  const categories = await getCategories()
-  console.log(categories)
   function getPreviousPage() {
     if (page > 1) {
       return `/shop?page=${parseInt(page) - 1}&search=${search}&categorySlug=${categorySlug}&sort=${sort}`
@@ -37,9 +34,6 @@ export default async function Page({ searchParams }) {
     < div className="" >
       {
         // TODO: Improve search pagination result visual indicators.
-      }
-      <ShopControlls _categories={JSON.stringify(categories)} />
-      {
         (search || categorySlug || sort) &&
 
         <div className="text-end pe-6 my-4"><span className="font-bold text-xl text-orange-800">{count}</span> Results Found</div>

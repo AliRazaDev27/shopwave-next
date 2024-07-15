@@ -13,9 +13,6 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 export default function CardProduct({ product }) {
   const discount = Math.floor(product?.discountPercentage)
-  console.log(product)
-  async function handleAddToCart(id) {
-  }
   return (
     <Card className="flex flex-col justify-between shadow-2xl hover:shadow-neutral-900 shadow-neutral-500 rounded-2xl">
       <CardHeader>
