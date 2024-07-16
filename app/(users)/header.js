@@ -48,9 +48,11 @@ export async function Header() {
         <div className="size-10  flex justify-center items-center  rounded-full bg-orange-500 text-2xl ">
           <ThemeSwitch />
         </div>
-        <div className="w-8 h-8 flex justify-center items-center">
-          <CartPopover />
-        </div>
+        {user &&
+          <div className="w-8 h-8 flex justify-center items-center">
+            <CartPopover />
+          </div>
+        }
         <div>
           {!user ?
 
