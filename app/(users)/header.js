@@ -20,6 +20,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import ThemeSwitch from "@/components/ThemeSwitch";
 
 export async function Header() {
   // FIX: change to user data
@@ -43,12 +44,13 @@ export async function Header() {
           <NavLinksMobile />
         </SheetContent>
       </Sheet>
-      <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-        <form className="ml-auto flex-1 sm:flex-initial">
-          <div className="relative w-8 h-8 flex justify-center items-center">
-            <CartPopover />
-          </div>
-        </form>
+      <div className="flex w-full justify-end items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
+        <div className="size-10  flex justify-center items-center  rounded-full bg-orange-500 text-2xl ">
+          <ThemeSwitch />
+        </div>
+        <div className="w-8 h-8 flex justify-center items-center">
+          <CartPopover />
+        </div>
         <div>
           {!user ?
 

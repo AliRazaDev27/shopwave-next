@@ -17,7 +17,7 @@ export default async function Page({ params }) {
   return (
     <div
       className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 max-w-6xl  mx-auto mt-8" >
-      <div className="block relative h-96 mx-2 overflow-hidden   rounded-full  shadow-lg shadow-black ">
+      <div className="block relative h-96 mx-2 overflow-hidden   rounded-full  shadow-lg shadow-current ">
         <Image
           // src="/placeholder.svg"
           src={product?.thumbnail?.picture_url}

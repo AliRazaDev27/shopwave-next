@@ -31,7 +31,7 @@ export default async function Page({ searchParams }) {
     return `/shop?page=${pageNumber}&search=${search}&categorySlug=${categorySlug}&sort=${sort}`
   }
   return (
-    < div className="" >
+    < div className="bg-neutral-300 dark:bg-neutral-800" >
       {
         // TODO: Improve search pagination result visual indicators.
         (search || categorySlug || sort) &&
@@ -39,7 +39,7 @@ export default async function Page({ searchParams }) {
         <div className="text-end pe-6 my-4"><span className="font-bold text-xl text-orange-800">{count}</span> Results Found</div>
 
       }
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4 ">
         {
           products.map((product) => {
             return (

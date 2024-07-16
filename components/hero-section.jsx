@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 export function HeroSection() {
   return (
     (<section
-      className="w-full h-[90vh] flex items-center justify-center bg-gradient-to-r from-primary to-neutral-300">
+      className="w-full h-[90vh] flex items-center justify-center bg-gradient-to-r from-neutral-700 to-neutral-400">
       <div className="container px-4 md:px-6 text-center">
         <div className="space-y-4 text-primary-foreground">
           <h1

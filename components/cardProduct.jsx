@@ -14,11 +14,11 @@ import { Badge } from "@/components/ui/badge"
 export default function CardProduct({ product }) {
   const discount = Math.floor(product?.discountPercentage)
   return (
-    <Card className="flex flex-col justify-between shadow-2xl hover:shadow-neutral-900 shadow-neutral-500 rounded-2xl">
+    <Card className="flex flex-col justify-between shadow-2xl hover:shadow-neutral-900 shadow-neutral-600 dark:shadow-neutral-600 dark:hover:shadow-neutral-400 rounded-2xl border-2 border-neutral-500">
       <CardHeader>
         <div className="h-72 relative">
           {discount > 0 && (
-            <div className="absolute top-0 right-0 z-10 w-min h-min text-xl font-semibold bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-4 rounded-tl-3xl rounded-br-3xl">{discount}%</div>
+            <div className="absolute top-0 right-0 z-10 w-min h-min text-2xl font-semibold bg-yellow-400 dark:bg-yellow-600 hover:bg-yellow-500 px-4 py-4 rounded-tl-3xl rounded-br-3xl">{discount}%</div>
           )}
           <Image
             className="mx-auto h-72 object-contain"
@@ -44,7 +44,7 @@ export default function CardProduct({ product }) {
           }
         </div>
         <div className="flex gap-4 py-2">
-          <Badge className="font-bold text-md bg-orange-600">Rs. {product?.price}</Badge>
+          <Badge className="font-semibold text-lg bg-orange-600">Rs. {product?.price}</Badge>
         </div>
         <CardDescription className="pt-2 line-clamp-3">{product?.description}</CardDescription>
       </CardContent>
