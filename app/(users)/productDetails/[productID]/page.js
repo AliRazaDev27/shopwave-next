@@ -1,5 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Reviews from "./reviews"
+import Recommendations from "./recommendations"
 import RatingStar from "@/components/ratingStar.jsx"
 import { Suspense } from "react"
 import Image from "next/image"
@@ -11,10 +12,10 @@ export default async function Page({ params }) {
   const product = await getProduct(productID)
   console.log(product)
   return (
-    <>
+    <div className="bg-gradient-to-t from-neutral-100 dark:from-neutral-800 to-orange-200 dark:to-orange-200">
       <div
-        className="container grid border-2 border-black grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 py-4  mx-auto mt-8" >
-        <div className="block justify-self-center self-center w-3/4 sm:w-1/2 md:w-2/3 aspect-square  relative mx-2 overflow-hidden border-2 border-green-600    rounded-full  shadow-lg shadow-current ">
+        className="container   grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 py-4  mx-auto pt-8" >
+        <div className="block bg-white dark:bg-neutral-900 justify-self-center self-center w-3/4 sm:w-1/2 md:w-2/3 aspect-square  relative mx-2 overflow-hidden rounded-full  shadow-lg shadow-orange-300 ">
           <Image
             // src="/placeholder.svg"
             src={product?.thumbnail?.picture_url}
@@ -25,16 +26,16 @@ export default async function Page({ params }) {
             blurDataURL="/placeholder.svg"
             className="object-contain w-full rounded-lg overflow-hidden" />
         </div>
-        <div className="grid gap-4 md:gap-6 py-4 w-[80%] mx-auto">
+        <div className="grid gap-4 border shadow-lg shadow-orange-300 bg-white dark:bg-neutral-800 px-2 rounded-xl md:gap-6 py-4 w-[80%] mx-auto">
           <div className="grid gap-2">
-            <h1 className="text-3xl font-bold">{product?.title}</h1>
+            <h1 className="text-xl md:text-3xl font-bold">{product?.title}</h1>
             <div className="flex gap-2">
               <RatingStar rating={product?.rating} />
-              <Badge className="bg-orange-600">{product?.rating}</Badge>
+              <Badge className="bg-orange-600 text-black dark:text-white">{product?.rating}</Badge>
             </div>
             <div className="flex gap-2 flex-wrap">
-              <Badge className="text-xs md:text-sm bg-green-600">{product?.category?.name}</Badge>
-              <Badge className="text-xs md:text-sm bg-blue-600">{product?.brand?.name}</Badge>
+              <Badge className="text-xs md:text-sm bg-green-600 text-black dark:text-white">{product?.category?.name}</Badge>
+              {product?.brand && <Badge className="text-xs md:text-sm bg-green-600 text-black dark:text-white">{product?.brand?.name}</Badge>}
             </div>
           </div>
           <div className="flex gap-2 items-center">
@@ -58,16 +59,16 @@ export default async function Page({ params }) {
         </div>
 
       </div>
-      <div className="container  mx-auto mt-8 border-2 border-black">
-        <Tabs defaultValue="details" className="">
-          <TabsList className="overflow-x-auto overflow-y-hidden justify-start w-full border border-red-600">
-            <TabsTrigger value="details" className="text-xl">Details</TabsTrigger>
-            <TabsTrigger value="reviews" className="text-xl">Reviews</TabsTrigger>
-            <TabsTrigger value="recommendations" className="text-xl">Recommendations</TabsTrigger>
+      <div>
+        <Tabs defaultValue="details" className="py-4">
+          <TabsList className="overflow-x-auto bg-transparent text-black dark:text-white overflow-y-hidden justify-start w-full px-2">
+            <TabsTrigger value="details" className="text-lg md:text-xl data-[state=active]:bg-orange-500"  >Details</TabsTrigger>
+            <TabsTrigger value="reviews" className="text-lg md:text-xl data-[state=active]:bg-orange-500">Reviews</TabsTrigger>
+            <TabsTrigger value="recommendations" className="text-lg md:text-xl data-[state=active]:bg-orange-500">Recommendations</TabsTrigger>
           </TabsList>
           <TabsContent value="details">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
-              <p className="text-lg">{product?.description}</p>
+              <p className="text-md md:text-lg text-wrap">{product?.description}</p>
               <div className="space-y-2">
                 <p><span className="text-lg font-semibold">Warranty</span>: {product?.warrantyInformation}</p>
                 <p><span className="text-lg font-semibold">Shipping</span>: {product?.shippingInformation}</p>
@@ -78,9 +79,11 @@ export default async function Page({ params }) {
           <TabsContent value="reviews">
             <Reviews productID={product._id} />
           </TabsContent>
-          <TabsContent value="recommendations"></TabsContent>
+          <TabsContent value="recommendations">
+            <Recommendations productID={product._id} />
+          </TabsContent>
         </Tabs>
       </div>
-    </>
+    </div >
   )
 }

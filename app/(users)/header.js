@@ -27,7 +27,7 @@ export async function Header() {
   const session = await auth()
   const user = session?.user
   return (
-    <header className=" sticky border-b top-0 flex h-16 items-center gap-4 bg-background px-4 md:px-6 divide-x">
+    <header className=" sticky w-full   top-0 flex h-16 items-center gap-4 bg-background px-2 md:px-6 divide-x">
       <NavLinks />
       <Sheet className="bg-orange-500">
         <SheetTrigger asChild>

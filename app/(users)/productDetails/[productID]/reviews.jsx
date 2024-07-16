@@ -6,7 +6,7 @@ export default async function Reviews({ productID }) {
   const reviews = await getReviews(productID)
   // console.log(reviews)
   return (
-    <div className="grid grid-cols-1 gap-4 my-8">
+    <div className="grid grid-cols-1 gap-4 py-8 px-2">
       {!reviews.error && (
         reviews.reviews.map((review) => (
           <div key={review._id} className="grid grid-cols-1 md:grid-cols-2 gap-2">
@@ -17,7 +17,7 @@ export default async function Reviews({ productID }) {
               </Avatar>
               <div>
                 <p>{review.name}</p>
-                <p>{review.email}</p>
+                <p className="text-sm  overflow-x-auto">{review.email}</p>
               </div>
             </div>
             <div className="grid gap-2">

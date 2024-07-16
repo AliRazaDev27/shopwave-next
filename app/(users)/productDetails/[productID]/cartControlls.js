@@ -1,4 +1,5 @@
 "use client"
+import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
 import { useRouter } from "next/navigation"
 import { useState, useEffect, useContext } from "react"
 import { CartContext } from "@/app/cartContext"
@@ -33,19 +34,17 @@ export function CartControlls({ product }) {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-evenly   rounded-2xl py-1">
         <Button
-          variant="outline"
+          variant="ghost"
           size="sm"
-          className="px-2 py-1 text-3xl bg-neutral-300 hover:bg-neutral-400"
           onClick={handleDecrement}>
-          -
+          <FaCircleMinus className="text-3xl  dark:text-white" />
         </Button>
         <div className="text-2xl font-bold">{quantity}</div>
         <Button
-          variant="outline"
+          variant="ghost"
           size="sm"
-          className="px-2 py-1 text-3xl bg-neutral-300 hover:bg-neutral-400"
           onClick={handleIncrement}>
-          +
+          <FaCirclePlus className="text-3xl  dark:text-white" />
         </Button>
       </div>
       <Button size="lg" className="w-full bg-gradient-to-b from-orange-700 to-orange-500 hover:bg-gradient-to-t transition duration-1000 text-white" type="button" onClick={() => handleSubmit()}>
