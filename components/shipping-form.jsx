@@ -17,8 +17,6 @@ export function ShippingForm() {
   const [isPending, startTransition] = useTransition()
 
   async function handleSubmit(formData) {
-    const data = Object.fromEntries(formData)
-    console.log(data)
     startTransition(async () => {
       const products = cart.map((item) => { return { _id: item._id, quantity: item.quantity } })
       const addOrderWithProducts = addOrder.bind(null, products)

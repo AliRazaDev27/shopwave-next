@@ -6,7 +6,6 @@ import { CartContext } from "@/app/cartContext"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from "@/components/ui/select"
 import { Separator } from "@/components/ui/separator"
 import { ShippingForm } from "@/components/shipping-form"
 import Link from "next/link"
@@ -19,7 +18,6 @@ export function Checkout() {
     setTotal(newTotal)
   }, [cart])
   function handleRemove(id) {
-    console.log(id)
     removeFromCart(id)
   }
   function increase(id) {

@@ -1,13 +1,8 @@
 import { auth, signOut } from "@/auth"
+import { buttonVariants } from "@/components/ui/button";
 import CartPopover from "./cartPopover";
 import NavLinks from "./navlinks";
 import NavLinksMobile from "./navlinks.mobile.js"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
-import { MdOutlineShoppingCart } from "react-icons/md";
 import Link from "next/link"
 import { CircleUser, Menu, Package2, Search } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -57,8 +52,8 @@ export async function Header() {
           {!user ?
 
             <div className="flex gap-2">
-              <Button><Link href="/login">Login</Link></Button>
-              <Button><Link href="/register">Register</Link></Button>
+              <Link className={buttonVariants()} href="/login">Login</Link>
+              <Link className={buttonVariants()} href="/register">Register</Link>
             </div> :
             <div>
               <DropdownMenu>

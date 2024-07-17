@@ -1,7 +1,7 @@
 "use client"
 import { FaCirclePlus, FaCircleMinus } from "react-icons/fa6";
 import { useRouter } from "next/navigation"
-import { useState, useEffect, useContext } from "react"
+import { useState, useContext } from "react"
 import { CartContext } from "@/app/cartContext"
 import { Button } from "@/components/ui/button"
 import { useToast } from "@/components/ui/use-toast"

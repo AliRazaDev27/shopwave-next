@@ -14,19 +14,17 @@ export default async function Page({ params }) {
   return (
     <div className="bg-gradient-to-t from-neutral-100 dark:from-neutral-800 to-orange-200 dark:to-orange-200">
       <div
-        className="container   grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 py-4  mx-auto pt-8" >
-        <div className="block bg-white dark:bg-neutral-900 justify-self-center self-center w-3/4 sm:w-1/2 md:w-2/3 aspect-square  relative mx-2 overflow-hidden rounded-full  shadow-lg shadow-orange-300 ">
+        className="container grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12 py-4  mx-auto pt-8" >
+        <div className="block bg-white dark:bg-neutral-900 justify-self-center self-center w-[95%] sm:w-8/12 md:w-10/12 aspect-square  relative mx-2 overflow-hidden rounded-full  shadow-lg shadow-orange-300 ">
           <Image
-            // src="/placeholder.svg"
             src={product?.thumbnail?.picture_url}
             alt="Product Image"
             fill
-            priority
             placeholder="blur"
             blurDataURL="/placeholder.svg"
-            className="object-contain w-full rounded-lg overflow-hidden" />
+            className="object-contain" />
         </div>
-        <div className="grid gap-4 border shadow-lg shadow-orange-300 bg-white dark:bg-neutral-800 px-2 rounded-xl md:gap-6 py-4 w-[80%] mx-auto">
+        <div className="grid gap-4 shadow-lg shadow-orange-300 bg-white dark:bg-neutral-800 px-4 rounded-xl md:gap-6 py-4 w-[95%] mx-auto">
           <div className="grid gap-2">
             <h1 className="text-xl md:text-3xl font-bold">{product?.title}</h1>
             <div className="flex gap-2">
@@ -77,10 +75,14 @@ export default async function Page({ params }) {
 
           </TabsContent>
           <TabsContent value="reviews">
-            <Reviews productID={product._id} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Reviews productID={product._id} />
+            </Suspense>
           </TabsContent>
           <TabsContent value="recommendations">
-            <Recommendations productID={product._id} />
+            <Suspense fallback={<div>Loading...</div>}>
+              <Recommendations productID={product._id} />
+            </Suspense>
           </TabsContent>
         </Tabs>
       </div>

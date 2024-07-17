@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { WebVitals } from "@/components/web-vitals";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster"
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         <Toaster />
         <CartProvider>
           <Providers>
+            <WebVitals />
             <main>{children}</main>
             <Analytics />
             <SpeedInsights />

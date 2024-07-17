@@ -5,7 +5,7 @@ import { getRecommendedProducts } from "@/lib/actions"
 export default async function Recommendations({ productID }) {
   const products = await getRecommendedProducts(productID)
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 py-4 justify-items-center items-center">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-4 justify-items-center items-center">
       {products.length > 0 && products.map(product => (
         <Card key={product._id} product={product} />
       ))}
@@ -14,7 +14,7 @@ export default async function Recommendations({ productID }) {
 }
 function Card({ product }) {
   return (
-    <div className="flex flex-col bg-neutral-200 dark:bg-neutral-700 gap-4 py-3 w-[300px] items-center border shadow-lg shadow-neutral-500 border-neutral-300 rounded-xl">
+    <div className="flex flex-col bg-neutral-200 dark:bg-neutral-700 gap-4 py-3 w-[300px] md:w-[320px] items-center border shadow-lg shadow-neutral-500 border-neutral-300 rounded-xl">
       <div>
         <Image
           src={product.thumbnail.picture_url}
@@ -24,7 +24,7 @@ function Card({ product }) {
           className="object-contain w-full rounded-lg overflow-hidden"
         />
       </div>
-      <p>{product.title}</p>
+      <p className="text-center text-lg font-semibold">{product.title}</p>
       <RatingStar rating={product.rating} />
       <p className="text-lg font-semibold">${product.price}</p>
       <Link className="bg-orange-500 text-white rounded-lg px-4 py-2 hover:bg-orange-700 text-semibold" href={`/productDetails/${product._id}`}>See Details</Link>

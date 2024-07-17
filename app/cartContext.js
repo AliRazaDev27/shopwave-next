@@ -1,16 +1,10 @@
-// contexts/CartContext.js
 "use client"
 import { createContext, useState, useEffect } from 'react';
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  console.log("Cart Provider")
   const [cart, setCart] = useState([]);
-  console.log(`cart: ${cart} `)
-
-  // useEffect(() => {
-  // }, []);
 
   useEffect(() => {
     if (cart.length === 0) {

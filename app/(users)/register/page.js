@@ -48,16 +48,14 @@ export default function Page() {
         <CardContent>
           <form action={handleSubmit}>
             <div className="grid gap-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="name">Full name</Label>
-                  <Input
-                    id="name"
-                    placeholder="Name"
-                    name="name"
-                    required
-                  />
-                </div>
+              <div className="grid gap-2">
+                <Label htmlFor="name">Full name</Label>
+                <Input
+                  id="name"
+                  placeholder="Name"
+                  name="name"
+                  required
+                />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>

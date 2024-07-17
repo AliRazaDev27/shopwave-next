@@ -12,7 +12,6 @@ import { useContext } from "react"
 export default function CartPopover() {
   const { cart } = useContext(CartContext)
   const length = cart?.length
-  console.log(length)
   return (
     <Popover>
       <PopoverTrigger className="bg-orange-500 p-2 rounded-full">
