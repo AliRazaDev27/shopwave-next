@@ -41,7 +41,7 @@ export function OrderDetails({ details }) {
           </div>
         </div>
 
-        <div className="p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="p-2 md:p-6 grid grid-cols-1 lg:grid-cols-3 gap-2 md:gap-6 ">
           <div className="col-span-2">
             <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">Ordered Products</h3>
             <Table>
@@ -66,7 +66,7 @@ export function OrderDetails({ details }) {
                           height={64}
                           className="rounded-md" />
                         <div>
-                          <div className="font-medium">{product?.product?.title}</div>
+                          <div className="font-medium hidden sm:block">{product?.product?.title}</div>
                         </div>
                       </div>
                     </TableCell>
@@ -81,7 +81,7 @@ export function OrderDetails({ details }) {
               </TableBody>
             </Table>
           </div>
-          <div className="flex flex-col justify-center items-center py-2 lg:py-0 min-h-[300px] border border-orange-500 bg-orange-50  rounded-2xl shadow-xl shadow-orange-500 ">
+          <div className="flex flex-col justify-center items-center  py-2 lg:py-0 min-h-[300px] min-w-[300px] border border-orange-500 bg-orange-50  rounded-3xl shadow-xl shadow-orange-500 ">
             <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">Customer Details</h3>
             <div className="grid gap-4">
               <div>

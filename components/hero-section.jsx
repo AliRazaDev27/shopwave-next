@@ -1,6 +1,5 @@
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
-import { Button } from "@/components/ui/button"
 
 export function HeroSection() {
   return (

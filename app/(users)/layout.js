@@ -1,4 +1,3 @@
-
 import { Header } from "./header"
 export default function Layout({ children }) {
 
@@ -6,5 +5,6 @@ export default function Layout({ children }) {
     <div>
       <Header />
     </div>
-    {children}</div>;
+    {children}
+  </div>;
 }

@@ -12,7 +12,6 @@ import {
   Users,
 } from "lucide-react"
 
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
@@ -27,7 +26,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 export default function Layout({ children }) {
   return (
     <div>
-      <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] ">
+      <div className="grid min-h-screen w-full md:grid-cols-[180px_1fr] lg:grid-cols-[200px_1fr] border-2 border-black ">
         <div className="hidden border-r bg-muted/40 md:block">
           <div className="flex h-full max-h-screen flex-col gap-2">
             <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
@@ -62,9 +61,6 @@ export default function Layout({ children }) {
                 >
                   <ShoppingCart className="h-4 w-4" />
                   Orders
-                  <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                    6
-                  </Badge>
                 </Link>
                 <Link
                   href="/admin/products"
@@ -133,9 +129,6 @@ export default function Layout({ children }) {
                   >
                     <ShoppingCart className="h-5 w-5" />
                     Orders
-                    <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                      6
-                    </Badge>
                   </Link>
                   <Link
                     href="products"

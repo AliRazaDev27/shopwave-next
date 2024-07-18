@@ -20,8 +20,13 @@ export function CartControlls({ product }) {
   }
   const handleSubmit = () => {
     let _product = JSON.parse(product)
-    _product.quantity = quantity
-    addToCart(_product)
+    let requiredData = {}
+    requiredData._id = _product._id
+    requiredData.quantity = quantity
+    requiredData.price = _product.price
+    requiredData.title = _product.title
+    requiredData.thumbnail = _product.thumbnail
+    addToCart(requiredData)
     toast({
       title: "Added to cart",
       description: "Product added to cart successfully",
