@@ -9,8 +9,6 @@ import {
 } from "@/components/ui/pagination"
 import CardProduct from "@/components/cardProduct"
 import { getProductsByQuery } from "@/lib/actions"
-import { getCategories } from "@/lib/actions"
-import { ShopControlls } from "@/components/shop-controlls"
 export default async function Page({ searchParams }) {
   const { page = 1 } = searchParams
   const { search = "" } = searchParams;
