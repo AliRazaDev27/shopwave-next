@@ -9,7 +9,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 export default function CardProduct({ product }) {
   const discount = Math.floor(product?.discountPercentage)
@@ -49,7 +48,7 @@ export default function CardProduct({ product }) {
         <CardDescription className="pt-2 line-clamp-3">{product?.description}</CardDescription>
       </CardContent>
       <CardFooter className="flex justify-center">
-        <Link href={`/productDetails/${product._id}`} className="bg-orange-600 text-white px-8 py-2 rounded-md hover:bg-orange-700">Add to Cart</Link>
+        <Link href={`/productDetails/${product._id}`} prefetch={false} className="bg-orange-600 text-white px-8 py-2 rounded-md hover:bg-orange-700">Add to Cart</Link>
       </CardFooter>
     </Card>
   )
