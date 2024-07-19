@@ -2,7 +2,7 @@
 import { useSearchParams } from "next/navigation"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { useRouter } from "next/navigation"
-import { useState, useRef } from "react"
+import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
@@ -34,10 +34,8 @@ export function ShopControlls({ _categories }) {
     router.push(`/shop?${new URLSearchParams(data).toString()}`)
   }
   function handleReset() {
-    setSearch("")
-    setSelectedCategory("")
-    setSortOption("newest")
     router.push("/shop")
+    router.refresh()
   }
   return (
     (<div
