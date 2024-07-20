@@ -14,8 +14,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetClose, SheetHeader, SheetTitle, SheetDescription } from "@/components/ui/sheet"
 import ThemeSwitch from "@/components/ThemeSwitch";
+import { Suspense } from "react"
 
 export async function Header() {
   // FIX: change to user data
@@ -23,7 +24,9 @@ export async function Header() {
   const user = session?.user
   return (
     <header className=" sticky w-full   top-0 flex h-16 items-center gap-4 bg-background px-2 md:px-6 divide-x">
-      <NavLinks />
+      <Suspense fallback={null}>
+        <NavLinks />
+      </Suspense>
       <Sheet className="bg-orange-500">
         <SheetTrigger asChild>
           <Button
@@ -35,8 +38,16 @@ export async function Header() {
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left">
-          <NavLinksMobile />
+        <SheetContent side="left" className="w-[250px]" >
+          <SheetHeader className="hidden">
+            <SheetTitle>Shopwave</SheetTitle>
+            <SheetDescription>
+              Browse our collection of products and find the perfect fit.
+            </SheetDescription>
+          </SheetHeader>
+          <Suspense fallback={null}>
+            <NavLinksMobile />
+          </Suspense>
         </SheetContent>
       </Sheet>
       <div className="flex w-full justify-end items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
