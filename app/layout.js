@@ -9,9 +9,13 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
+const googleTag = "google-site-verification"
 export const metadata = {
   title: "Shopwave",
   description: "Explore the world of fashion with Shopwave",
+  other: {
+    [googleTag]: "fZt54edCU_eXLoHZax2lsB3yFYmxZYK0ndkdmQaNmw0",
+  },
 };
 
 export default function RootLayout({ children }) {
