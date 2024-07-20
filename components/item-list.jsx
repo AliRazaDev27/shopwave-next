@@ -32,23 +32,25 @@ export default function ItemList() {
               alt={item.title}
               width={120}
               height={120}
-              className="rounded-lg object-cover" />
-            <div className="grid gap-2">
-              <div className="flex items-center justify-between">
+              className="rounded-lg object-cover " />
+            <div className="flex flex-wrap justify-between gap-2 ">
+              <div className="flex flex-col items-center justify-between">
                 <h3 className="font-semibold">{item.title}</h3>
+
                 <div className="flex items-center gap-2">
+                  <Button variant="outline" onClick={() => decrease(item._id)}><HiMinus /></Button>
+                  <Label htmlFor={`quantity-${item._id}`}>{` ${item.quantity}`}</Label>
+                  <Button variant="outline" onClick={() => increase(item._id)}><HiPlus /></Button>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+
+                <div className="flex  items-center gap-2">
                   <span className="text-lg font-semibold">${(item.price * item.quantity).toFixed(2)}</span>
                   <Button size="icon" variant="ghost" onClick={() => handleRemove(item._id)}>
                     <TrashIcon className="h-5 w-5" />
                     <span className="sr-only">Remove {item.title}</span>
                   </Button>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <Button variant="outline" onClick={() => decrease(item._id)}><HiMinus /></Button>
-                  <Label htmlFor={`quantity-${item._id}`}>Qty:{` ${item.quantity}`}</Label>
-                  <Button variant="outline" onClick={() => increase(item._id)}><HiPlus /></Button>
                 </div>
               </div>
             </div>
