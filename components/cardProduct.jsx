@@ -20,12 +20,31 @@ export default function CardProduct({ product }) {
             <div className="absolute top-0 right-0 z-10 w-min h-min text-2xl font-semibold bg-yellow-400 dark:bg-yellow-600 hover:bg-yellow-500 px-4 py-4 rounded-tl-3xl rounded-br-3xl">{discount}%</div>
           )}
           <Image
-            className="mx-auto h-72 object-contain"
+            className="dark:hidden mx-auto  h-72 object-contain"
             fill
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
             src={product?.thumbnail?.picture_url}
             placeholder="blur"
             blurDataURL="/placeholder.svg"
-            alt="product picture" />
+            alt="product picture"
+            fallback="/placeholder.svg"
+          />
+
+
+          <Image
+            className="hidden dark:block mx-auto  h-72 object-contain"
+            fill
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+            src={product?.thumbnail?.picture_url}
+            placeholder="blur"
+            blurDataURL="/placeholder-dark.svg"
+            alt="product picture"
+            fallback="/placeholder-dark.svg"
+          />
         </div>
       </CardHeader>
       <CardContent>
