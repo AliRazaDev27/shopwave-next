@@ -1,12 +1,15 @@
+import dynamic from "next/dynamic"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import Reviews from "./reviews"
-import Recommendations from "./recommendations"
 import RatingStar from "@/components/ratingStar.jsx"
 import { Suspense } from "react"
 import Image from "next/image"
 import { Badge } from "@/components/ui/badge"
 import { CartControlls } from "./cartControlls"
 import { getProduct } from "@/lib/actions"
+
+const DynamicReviews = dynamic(() => import("./reviews"))
+const DynamicRecommendations = dynamic(() => import("./recommendations"))
+
 export default async function Page({ params }) {
   const { productID } = params
   const product = await getProduct(productID)
@@ -20,6 +23,8 @@ export default async function Page({ params }) {
             src={product?.thumbnail?.picture_url}
             alt="Product Image"
             fill
+            sizes="(max-width: 768px) 100vw,
+              50vw"
             placeholder="blur"
             blurDataURL="/placeholder.svg"
             className="object-contain" />
@@ -76,12 +81,12 @@ export default async function Page({ params }) {
           </TabsContent>
           <TabsContent value="reviews">
             <Suspense fallback={<div>Loading...</div>}>
-              <Reviews productID={product._id} />
+              <DynamicReviews productID={product._id} />
             </Suspense>
           </TabsContent>
           <TabsContent value="recommendations">
             <Suspense fallback={<div>Loading...</div>}>
-              <Recommendations productID={product._id} />
+              <DynamicRecommendations productID={product._id} />
             </Suspense>
           </TabsContent>
         </Tabs>
