@@ -79,25 +79,25 @@ export function ProductCard({ data }) {
     </Card>
   )
 }
-export function ReviewCard() {
+export function ReviewCard({ data }) {
   return (
     <Card>
       <CardHeader className="pb-2">
         <CardDescription>Total Reviews</CardDescription>
-        <CardTitle className="text-4xl">2,345</CardTitle>
+        <CardTitle className="text-4xl">{data?.total}</CardTitle>
       </CardHeader>
       <CardFooter className="flex flex-col gap-2 items-start">
         <div className="flex items-center gap-2">
           <StarIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Average Rating: 4.7</span>
+          <span className="text-sm text-muted-foreground">Average Rating: {data?.average}</span>
         </div>
         <div className="flex items-center gap-2">
           <ThumbsUpIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Positive: 2,100</span>
+          <span className="text-sm text-muted-foreground">Positive: {data?.positive}</span>
         </div>
         <div className="flex items-center gap-2">
           <ThumbsDownIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Negative: 245</span>
+          <span className="text-sm text-muted-foreground">Negative: {data?.negative}</span>
         </div>
       </CardFooter>
     </Card>
