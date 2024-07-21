@@ -7,136 +7,7 @@ import { Card, CardHeader, CardDescription, CardTitle, CardFooter, CardContent }
 import { CartesianGrid, XAxis, Bar, BarChart, Pie, PieChart, Line, LineChart } from "recharts"
 import { ChartTooltipContent, ChartTooltip, ChartContainer } from "@/components/ui/chart"
 
-export function Dashboard() {
-  return (
-    (<div className="grid min-h-screen w-full">
-      <main className="grid flex-1 gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
-        <div className="grid  border border-white grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Total Products</CardDescription>
-              <CardTitle className="text-4xl">1,234</CardTitle>
-            </CardHeader>
-            <CardFooter className="flex flex-col gap-2 items-start">
-              <div className="flex items-center gap-2">
-                <PackageIcon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">In Stock: 1,100</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <PackageXIcon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Out of Stock: 134</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CirclePlusIcon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">New: 25</span>
-              </div>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Total Reviews</CardDescription>
-              <CardTitle className="text-4xl">2,345</CardTitle>
-            </CardHeader>
-            <CardFooter className="flex flex-col gap-2 items-start">
-              <div className="flex items-center gap-2">
-                <StarIcon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Average Rating: 4.7</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <ThumbsUpIcon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Positive: 2,100</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <ThumbsDownIcon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Negative: 245</span>
-              </div>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Total Orders</CardDescription>
-              <CardTitle className="text-4xl">3,456</CardTitle>
-            </CardHeader>
-            <CardFooter className="flex flex-col gap-2 items-start">
-              <div className="flex items-center gap-2">
-                <CheckIcon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Completed: 3,100</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <ClockIcon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Pending: 256</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <XIcon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Cancelled: 100</span>
-              </div>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Total Users</CardDescription>
-              <CardTitle className="text-4xl">5,678</CardTitle>
-            </CardHeader>
-            <CardFooter className="flex flex-col gap-2 items-start">
-              <div className="flex items-center gap-2">
-                <UsersIcon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Active: 5,200</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <CirclePlusIcon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">New: 478</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <LockIcon className="h-4 w-4 text-muted-foreground" />
-                <span className="text-sm text-muted-foreground">Blocked: 78</span>
-              </div>
-            </CardFooter>
-          </Card>
-        </div>
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle>Product Overview</CardTitle>
-              <CardDescription>A breakdown of your product inventory and sales.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <BarchartChart className="border border-red-500 aspect-[16/9]" />
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>Review Sentiment</CardTitle>
-              <CardDescription>Analyze the sentiment of your customer reviews.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <PiechartlabelChart className="aspect-[16/9]" />
-            </CardContent>
-          </Card>
-        </div>
-        <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-          <Card>
-            <CardHeader>
-              <CardTitle>Order Trends</CardTitle>
-              <CardDescription>Track the progress of your orders over time.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <LinechartChart className="aspect-[16/9]" />
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>User Growth</CardTitle>
-              <CardDescription>Monitor the growth of your user base.</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <BarchartChart className="aspect-[16/9]" />
-            </CardContent>
-          </Card>
-        </div>
-      </main>
-    </div>)
-  );
-}
+
 export function PartThree() {
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -185,90 +56,100 @@ export function PartTwo() {
     </div>
   )
 }
-export function PartOne() {
+export function ProductCard() {
   return (
-    <div className="grid  border border-white grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <Card>
-        <CardHeader className="pb-2">
-          <CardDescription>Total Products</CardDescription>
-          <CardTitle className="text-4xl">1,234</CardTitle>
-        </CardHeader>
-        <CardFooter className="flex flex-col gap-2 items-start">
-          <div className="flex items-center gap-2">
-            <PackageIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">In Stock: 1,100</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <PackageXIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Out of Stock: 134</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CirclePlusIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">New: 25</span>
-          </div>
-        </CardFooter>
-      </Card>
-      <Card>
-        <CardHeader className="pb-2">
-          <CardDescription>Total Reviews</CardDescription>
-          <CardTitle className="text-4xl">2,345</CardTitle>
-        </CardHeader>
-        <CardFooter className="flex flex-col gap-2 items-start">
-          <div className="flex items-center gap-2">
-            <StarIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Average Rating: 4.7</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <ThumbsUpIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Positive: 2,100</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <ThumbsDownIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Negative: 245</span>
-          </div>
-        </CardFooter>
-      </Card>
-      <Card>
-        <CardHeader className="pb-2">
-          <CardDescription>Total Orders</CardDescription>
-          <CardTitle className="text-4xl">3,456</CardTitle>
-        </CardHeader>
-        <CardFooter className="flex flex-col gap-2 items-start">
-          <div className="flex items-center gap-2">
-            <CheckIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Completed: 3,100</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <ClockIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Pending: 256</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <XIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Cancelled: 100</span>
-          </div>
-        </CardFooter>
-      </Card>
-      <Card>
-        <CardHeader className="pb-2">
-          <CardDescription>Total Users</CardDescription>
-          <CardTitle className="text-4xl">5,678</CardTitle>
-        </CardHeader>
-        <CardFooter className="flex flex-col gap-2 items-start">
-          <div className="flex items-center gap-2">
-            <UsersIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Active: 5,200</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <CirclePlusIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">New: 478</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <LockIcon className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm text-muted-foreground">Blocked: 78</span>
-          </div>
-        </CardFooter>
-      </Card>
-    </div>
+    <Card>
+      <CardHeader className="pb-2">
+        <CardDescription>Total Products</CardDescription>
+        <CardTitle className="text-4xl">1,234</CardTitle>
+      </CardHeader>
+      <CardFooter className="flex flex-col gap-2 items-start">
+        <div className="flex items-center gap-2">
+          <PackageIcon className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">In Stock: 1,100</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <PackageXIcon className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">Out of Stock: 134</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <CirclePlusIcon className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">New: 25</span>
+        </div>
+      </CardFooter>
+    </Card>
+  )
+}
+export function ReviewCard() {
+  return (
+    <Card>
+      <CardHeader className="pb-2">
+        <CardDescription>Total Reviews</CardDescription>
+        <CardTitle className="text-4xl">2,345</CardTitle>
+      </CardHeader>
+      <CardFooter className="flex flex-col gap-2 items-start">
+        <div className="flex items-center gap-2">
+          <StarIcon className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">Average Rating: 4.7</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <ThumbsUpIcon className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">Positive: 2,100</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <ThumbsDownIcon className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">Negative: 245</span>
+        </div>
+      </CardFooter>
+    </Card>
+  )
+}
+export function OrderCard() {
+  return (
+    <Card>
+      <CardHeader className="pb-2">
+        <CardDescription>Total Orders</CardDescription>
+        <CardTitle className="text-4xl">3,456</CardTitle>
+      </CardHeader>
+      <CardFooter className="flex flex-col gap-2 items-start">
+        <div className="flex items-center gap-2">
+          <CheckIcon className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">Completed: 3,100</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <ClockIcon className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">Pending: 256</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <XIcon className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">Cancelled: 100</span>
+        </div>
+      </CardFooter>
+    </Card>
+  )
+}
+export function UserCard() {
+  return (
+    <Card>
+      <CardHeader className="pb-2">
+        <CardDescription>Total Users</CardDescription>
+        <CardTitle className="text-4xl">5,678</CardTitle>
+      </CardHeader>
+      <CardFooter className="flex flex-col gap-2 items-start">
+        <div className="flex items-center gap-2">
+          <UsersIcon className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">Active: 5,200</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <CirclePlusIcon className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">New: 478</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <LockIcon className="h-4 w-4 text-muted-foreground" />
+          <span className="text-sm text-muted-foreground">Blocked: 78</span>
+        </div>
+      </CardFooter>
+    </Card>
   )
 }
 
