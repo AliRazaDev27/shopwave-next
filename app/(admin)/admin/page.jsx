@@ -16,10 +16,12 @@ import {
   from "@/components/dashboard";
 
 export default async function Admin() {
-  const productsInfo = await productsOverview();
-  const reviewsInfo = await reviewsOverview();
-  const ordersInfo = await ordersOverview();
-  const usersInfo = await usersOverview();
+  const [productsInfo, reviewsInfo, ordersInfo, usersInfo] = await Promise.all([
+    productsOverview(),
+    reviewsOverview(),
+    ordersOverview(),
+    usersOverview(),
+  ])
   return (
     <div className="grid min-h-screen w-full">
       <main className="grid flex-1 gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
