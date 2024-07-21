@@ -103,25 +103,25 @@ export function ReviewCard({ data }) {
     </Card>
   )
 }
-export function OrderCard() {
+export function OrderCard({ data }) {
   return (
     <Card>
       <CardHeader className="pb-2">
         <CardDescription>Total Orders</CardDescription>
-        <CardTitle className="text-4xl">3,456</CardTitle>
+        <CardTitle className="text-4xl">{data?.total}</CardTitle>
       </CardHeader>
       <CardFooter className="flex flex-col gap-2 items-start">
         <div className="flex items-center gap-2">
           <CheckIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Completed: 3,100</span>
+          <span className="text-sm text-muted-foreground">Completed: {data?.completed}</span>
         </div>
         <div className="flex items-center gap-2">
           <ClockIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Pending: 256</span>
+          <span className="text-sm text-muted-foreground">Pending: {data?.pending}</span>
         </div>
         <div className="flex items-center gap-2">
           <XIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Cancelled: 100</span>
+          <span className="text-sm text-muted-foreground">Cancelled: {data?.cancelled}</span>
         </div>
       </CardFooter>
     </Card>
