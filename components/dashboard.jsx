@@ -32,28 +32,30 @@ export function PartThree() {
     </div>
   )
 }
-export function PartTwo() {
+export function ProductChart() {
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-      <Card>
-        <CardHeader>
-          <CardTitle>Product Overview</CardTitle>
-          <CardDescription>A breakdown of your product inventory and sales.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <BarchartChart className="border border-red-500 aspect-[16/9]" />
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Review Sentiment</CardTitle>
-          <CardDescription>Analyze the sentiment of your customer reviews.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <PiechartlabelChart className="aspect-[16/9]" />
-        </CardContent>
-      </Card>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Product Overview</CardTitle>
+        <CardDescription>A breakdown of your product inventory and sales.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <BarchartChart className="border border-red-500 aspect-[16/9]" />
+      </CardContent>
+    </Card>
+  )
+}
+export function ReviewChart() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Review Sentiment</CardTitle>
+        <CardDescription>Analyze the sentiment of your customer reviews.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <PiechartlabelChart className="aspect-[16/9]" />
+      </CardContent>
+    </Card>
   )
 }
 export function ProductCard() {

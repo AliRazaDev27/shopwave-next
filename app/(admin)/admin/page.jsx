@@ -1,6 +1,15 @@
 "use client"
 import { Suspense } from "react"
-import { ProductCard, ReviewCard, OrderCard, UserCard, PartTwo, PartThree } from "@/components/dashboard";
+import {
+  ProductCard,
+  ReviewCard,
+  OrderCard,
+  UserCard,
+  ProductChart,
+  ReviewChart,
+  PartThree
+}
+  from "@/components/dashboard";
 
 export default function Admin() {
   return (
@@ -16,7 +25,10 @@ export default function Admin() {
         </Suspense>
 
         <Suspense fallback={<div>Loading...</div>}>
-          <PartTwo />
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <ProductChart />
+            <ReviewChart />
+          </div>
         </Suspense>
 
         <Suspense fallback={<div>Loading...</div>}>
