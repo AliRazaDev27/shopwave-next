@@ -1,8 +1,4 @@
 "use client"
-import Image from "next/image"
-import { Input } from "@/components/ui/input"
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuItem } from "@/components/ui/dropdown-menu"
-import { Button } from "@/components/ui/button"
 import { Card, CardHeader, CardDescription, CardTitle, CardFooter, CardContent } from "@/components/ui/card"
 import { CartesianGrid, XAxis, Bar, BarChart, Pie, PieChart, Line, LineChart } from "recharts"
 import { ChartTooltipContent, ChartTooltip, ChartContainer } from "@/components/ui/chart"
@@ -59,25 +55,25 @@ export function ReviewChart() {
     </Card>
   )
 }
-export function ProductCard() {
+export function ProductCard({ data }) {
   return (
     <Card>
       <CardHeader className="pb-2">
         <CardDescription>Total Products</CardDescription>
-        <CardTitle className="text-4xl">1,234</CardTitle>
+        <CardTitle className="text-4xl">{data?.total}</CardTitle>
       </CardHeader>
       <CardFooter className="flex flex-col gap-2 items-start">
         <div className="flex items-center gap-2">
           <PackageIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">In Stock: 1,100</span>
+          <span className="text-sm text-muted-foreground">In Stock: {data?.active}</span>
         </div>
         <div className="flex items-center gap-2">
           <PackageXIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Out of Stock: 134</span>
+          <span className="text-sm text-muted-foreground">Out of Stock: {data?.inactive}</span>
         </div>
         <div className="flex items-center gap-2">
           <CirclePlusIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">New: 25</span>
+          <span className="text-sm text-muted-foreground">New: {data?.newProducts}</span>
         </div>
       </CardFooter>
     </Card>
