@@ -7,29 +7,30 @@ import { Card, CardHeader, CardDescription, CardTitle, CardFooter, CardContent }
 import { CartesianGrid, XAxis, Bar, BarChart, Pie, PieChart, Line, LineChart } from "recharts"
 import { ChartTooltipContent, ChartTooltip, ChartContainer } from "@/components/ui/chart"
 
-
-export function PartThree() {
+export function OrderChart() {
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-      <Card>
-        <CardHeader>
-          <CardTitle>Order Trends</CardTitle>
-          <CardDescription>Track the progress of your orders over time.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <LinechartChart className="aspect-[16/9]" />
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>User Growth</CardTitle>
-          <CardDescription>Monitor the growth of your user base.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <BarchartChart className="aspect-[16/9]" />
-        </CardContent>
-      </Card>
-    </div>
+    <Card>
+      <CardHeader>
+        <CardTitle>Order Trends</CardTitle>
+        <CardDescription>Track the progress of your orders over time.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <LinechartChart className="aspect-[16/9]" />
+      </CardContent>
+    </Card>
+  )
+}
+export function UserChart() {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>User Growth</CardTitle>
+        <CardDescription>Monitor the growth of your user base.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <BarchartChart className="aspect-[16/9]" />
+      </CardContent>
+    </Card>
   )
 }
 export function ProductChart() {

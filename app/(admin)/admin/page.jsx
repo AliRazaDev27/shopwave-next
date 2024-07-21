@@ -7,7 +7,8 @@ import {
   UserCard,
   ProductChart,
   ReviewChart,
-  PartThree
+  OrderChart,
+  UserChart,
 }
   from "@/components/dashboard";
 
@@ -32,7 +33,10 @@ export default function Admin() {
         </Suspense>
 
         <Suspense fallback={<div>Loading...</div>}>
-          <PartThree />
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+            <OrderChart />
+            <UserChart />
+          </div>
         </Suspense>
       </main>
 
