@@ -14,7 +14,7 @@ export default function CartPopover() {
   const length = cart?.length
   return (
     <Popover>
-      <PopoverTrigger className="bg-orange-500 p-2 rounded-full">
+      <PopoverTrigger className="bg-orange-500 hover:bg-orange-600 p-2 rounded-full">
         <MdOutlineShoppingCart className="size-6 text-white" />
       </PopoverTrigger>
       <PopoverContent>

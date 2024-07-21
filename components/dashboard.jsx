@@ -16,7 +16,8 @@ export function OrderChart() {
     </Card>
   )
 }
-export function UserChart() {
+export function UserChart({ data }) {
+  console.log(data)
   return (
     <Card>
       <CardHeader>
@@ -24,7 +25,7 @@ export function UserChart() {
         <CardDescription>Monitor the growth of your user base.</CardDescription>
       </CardHeader>
       <CardContent>
-        <BarchartChart className="aspect-[16/9]" />
+        <BarchartChart data={data} className="aspect-[16/9]" />
       </CardContent>
     </Card>
   )
@@ -37,12 +38,12 @@ export function ProductChart() {
         <CardDescription>A breakdown of your product inventory and sales.</CardDescription>
       </CardHeader>
       <CardContent>
-        <BarchartChart className="border border-red-500 aspect-[16/9]" />
+        <BarchartChart className="aspect-[16/9]" />
       </CardContent>
     </Card>
   )
 }
-export function ReviewChart() {
+export function ReviewChart({ data }) {
   return (
     <Card>
       <CardHeader>
@@ -50,7 +51,7 @@ export function ReviewChart() {
         <CardDescription>Analyze the sentiment of your customer reviews.</CardDescription>
       </CardHeader>
       <CardContent>
-        <PiechartlabelChart className="aspect-[16/9]" />
+        <PiechartlabelChart data={data} className="aspect-[16/9]" />
       </CardContent>
     </Card>
   )
@@ -152,9 +153,26 @@ export function UserCard({ data }) {
   )
 }
 
-function BarchartChart(props) {
+function BarchartChart({ data }) {
+  console.log(data)
+  const values = data
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ]
+  const currentMonth = values?.currentMonth
   return (
-    (<div {...props}>
+    (<div>
       <ChartContainer
         config={{
           desktop: {
@@ -162,16 +180,16 @@ function BarchartChart(props) {
             color: "hsl(var(--chart-1))",
           },
         }}
-        className="border w-full border-blue-500 min-h-[300px]">
+        className="w-full min-h-[300px]">
         <BarChart
           accessibilityLayer
           data={[
-            { month: "January", desktop: 186 },
-            { month: "February", desktop: 305 },
-            { month: "March", desktop: 237 },
-            { month: "April", desktop: 73 },
-            { month: "May", desktop: 209 },
-            { month: "June", desktop: 214 },
+            { month: months[currentMonth - 6], desktop: values.usersPastMonths[5] },
+            { month: months[currentMonth - 5], desktop: values.usersPastMonths[4] },
+            { month: months[currentMonth - 4], desktop: values.usersPastMonths[3] },
+            { month: months[currentMonth - 3], desktop: values.usersPastMonths[2] },
+            { month: months[currentMonth - 2], desktop: values.usersPastMonths[1] },
+            { month: months[currentMonth - 1], desktop: values.usersPastMonths[0] },
           ]}>
           <CartesianGrid vertical={false} />
           <XAxis
@@ -362,31 +380,61 @@ function PackageXIcon(props) {
 
 
 function PiechartlabelChart(props) {
+  const values = props?.data
+  const data =
+    [
+      { reviews: "One Star", numbers: values?.oneStars, fill: "var(--color-oneStar)" },
+      { reviews: "Two Star", numbers: values?.twoStars, fill: "var(--color-twoStar)" },
+      { reviews: "Three Star", numbers: values?.threeStars, fill: "var(--color-threeStar)" },
+      { reviews: "Four Star", numbers: values?.fourStars, fill: "var(--color-fourStar)" },
+      { reviews: "Five Star", numbers: values?.fiveStars, fill: "var(--color-fiveStar)" },
+    ]
+  const RADIAN = Math.PI / 180;
+
+  const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    const value = data[index].numbers;
+
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="black"
+        textAnchor={x > cx ? 'start' : 'end'}
+        dominantBaseline="central"
+        style={{ fontSize: '12px' }}
+      >
+        {value}
+      </text>
+    );
+  };
   return (
-    (<div {...props}>
+    (<div>
       <ChartContainer
         config={{
-          visitors: {
-            label: "Visitors",
+          reviews: {
+            label: "Reviews",
           },
-          chrome: {
-            label: "Chrome",
+          oneStar: {
+            label: "One Star",
             color: "hsl(var(--chart-1))",
           },
-          safari: {
-            label: "Safari",
+          twoStar: {
+            label: "Two Star",
             color: "hsl(var(--chart-2))",
           },
-          firefox: {
-            label: "Firefox",
+          threeStar: {
+            label: "Three Star",
             color: "hsl(var(--chart-3))",
           },
-          edge: {
-            label: "Edge",
+          fourStar: {
+            label: "Four Star",
             color: "hsl(var(--chart-4))",
           },
-          other: {
-            label: "Other",
+          fiveStar: {
+            label: "Five Star",
             color: "hsl(var(--chart-5))",
           },
         }}
@@ -394,16 +442,12 @@ function PiechartlabelChart(props) {
         <PieChart>
           <ChartTooltip content={<ChartTooltipContent hideLabel />} />
           <Pie
-            data={[
-              { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-              { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-              { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-              { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-              { browser: "other", visitors: 90, fill: "var(--color-other)" },
-            ]}
-            dataKey="visitors"
-            label
-            nameKey="browser" />
+            data={data}
+            dataKey="numbers"
+            labelLine={false}
+            label={renderCustomizedLabel}
+            outerRadius={100}
+            nameKey="reviews" />
         </PieChart>
       </ChartContainer>
     </div>)

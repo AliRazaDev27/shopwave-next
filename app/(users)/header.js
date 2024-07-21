@@ -51,7 +51,7 @@ export async function Header() {
         </SheetContent>
       </Sheet>
       <div className="flex w-full justify-end items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-        <div className="size-10  flex justify-center items-center  rounded-full bg-orange-500 text-2xl ">
+        <div className="size-10 p-0  flex justify-center items-center  rounded-full bg-orange-500 hover:bg-orange-600  text-2xl ">
           <ThemeSwitch />
         </div>
         {user &&

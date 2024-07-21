@@ -28,23 +28,23 @@ export default async function Admin() {
         <Suspense fallback={<div>Loading...</div>}>
           <div className="grid  border border-white grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <ProductCard data={productsInfo} />
-            <ReviewCard data={reviewsInfo} />
+            <ReviewCard data={reviewsInfo.card} />
             <OrderCard data={ordersInfo} />
-            <UserCard data={usersInfo} />
+            <UserCard data={usersInfo.card} />
           </div>
         </Suspense>
 
         <Suspense fallback={<div>Loading...</div>}>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <ProductChart />
-            <ReviewChart />
+            {/* <ProductChart /> */}
+            <ReviewChart data={reviewsInfo.chart} />
           </div>
         </Suspense>
 
         <Suspense fallback={<div>Loading...</div>}>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             <OrderChart />
-            <UserChart />
+            <UserChart data={usersInfo.chart} />
           </div>
         </Suspense>
       </main>
