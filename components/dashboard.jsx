@@ -127,25 +127,25 @@ export function OrderCard({ data }) {
     </Card>
   )
 }
-export function UserCard() {
+export function UserCard({ data }) {
   return (
     <Card>
       <CardHeader className="pb-2">
         <CardDescription>Total Users</CardDescription>
-        <CardTitle className="text-4xl">5,678</CardTitle>
+        <CardTitle className="text-4xl">{data?.total}</CardTitle>
       </CardHeader>
       <CardFooter className="flex flex-col gap-2 items-start">
         <div className="flex items-center gap-2">
           <UsersIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Active: 5,200</span>
+          <span className="text-sm text-muted-foreground">Active: {data?.active}</span>
         </div>
         <div className="flex items-center gap-2">
           <CirclePlusIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">New: 478</span>
+          <span className="text-sm text-muted-foreground">New: {data?.newUsers}</span>
         </div>
         <div className="flex items-center gap-2">
           <LockIcon className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Blocked: 78</span>
+          <span className="text-sm text-muted-foreground">Blocked: {data?.inactive}</span>
         </div>
       </CardFooter>
     </Card>

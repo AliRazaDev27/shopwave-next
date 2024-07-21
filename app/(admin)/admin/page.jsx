@@ -2,6 +2,7 @@ import { Suspense } from "react"
 import { productsOverview } from "@/lib/actions/productActions";
 import { reviewsOverview } from "@/lib/actions/reviewActions";
 import { ordersOverview } from "@/lib/actions/orderActions";
+import { usersOverview } from "@/lib/actions/userActions";
 import {
   ProductCard,
   ReviewCard,
@@ -18,6 +19,7 @@ export default async function Admin() {
   const productsInfo = await productsOverview();
   const reviewsInfo = await reviewsOverview();
   const ordersInfo = await ordersOverview();
+  const usersInfo = await usersOverview();
   return (
     <div className="grid min-h-screen w-full">
       <main className="grid flex-1 gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
@@ -26,7 +28,7 @@ export default async function Admin() {
             <ProductCard data={productsInfo} />
             <ReviewCard data={reviewsInfo} />
             <OrderCard data={ordersInfo} />
-            <UserCard />
+            <UserCard data={usersInfo} />
           </div>
         </Suspense>
 
