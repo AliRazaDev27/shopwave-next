@@ -1,4 +1,5 @@
 import { buttonVariants } from "@/components/ui/button"
+import PaginationControll from "@/components/pagination"
 import Image from "next/image"
 import DeleteButton from "./deleteButton"
 import { Button } from "@/components/ui/button"
@@ -38,12 +39,19 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import Link from "next/link"
-import { getProducts } from "@/lib/actions"
+import { getProductsByQuery } from "@/lib/actions"
 import { dateFormat } from "@/lib/format"
+import { ShopControlls } from "@/components/shop-controlls"
+import { getCategories } from "@/lib/actions"
 
-export default async function Page() {
-  const products = await getProducts()
+export default async function Page({ searchParams }) {
+  const { page = 1 } = searchParams
+  const { search = "" } = searchParams;
+  const { categorySlug = "" } = searchParams
+  const { sort = "" } = searchParams
+  const { products, count } = await getProductsByQuery(page, search, categorySlug, sort)
   return <div className="">
+
     <div className="flex justify-between items-center my-2 px-2">
       <h2 className="text-xl font-semibold md:text-2xl">Products</h2>
       <Link href="/admin/products/add"><Button className="me-8 ">Add Product</Button></Link>
@@ -77,7 +85,7 @@ export default async function Page() {
                   alt="Product image"
                   className="aspect-square rounded-md object-cover"
                   height="64"
-                  src={product?.picture?.picture_url}
+                  src={product?.thumbnail?.picture_url}
                   width="64"
                 />
               </TableCell>
@@ -116,5 +124,10 @@ export default async function Page() {
         </TableBody>
       </Table>
     </div>
-  </div >;
+
+    <div className="my-4">
+      <PaginationControll count={count} />
+    </div>
+  </div >
+
 }
