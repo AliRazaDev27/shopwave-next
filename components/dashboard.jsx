@@ -3,7 +3,21 @@ import { Card, CardHeader, CardDescription, CardTitle, CardFooter, CardContent }
 import { CartesianGrid, XAxis, Bar, BarChart, Pie, PieChart, Line, LineChart } from "recharts"
 import { ChartTooltipContent, ChartTooltip, ChartContainer } from "@/components/ui/chart"
 
-export function OrderChart() {
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+]
+export function OrderChart({ data }) {
   return (
     <Card>
       <CardHeader>
@@ -11,7 +25,7 @@ export function OrderChart() {
         <CardDescription>Track the progress of your orders over time.</CardDescription>
       </CardHeader>
       <CardContent>
-        <LinechartChart className="aspect-[16/9]" />
+        <LinechartChart data={data} className="aspect-[16/9]" />
       </CardContent>
     </Card>
   )
@@ -156,20 +170,6 @@ export function UserCard({ data }) {
 function BarchartChart({ data }) {
   console.log(data)
   const values = data
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ]
   const currentMonth = values?.currentMonth
   return (
     (<div>
@@ -267,9 +267,12 @@ function ClockIcon(props) {
 }
 
 
-function LinechartChart(props) {
+function LinechartChart({ data }) {
+  const currentMonth = data?.currentMonth
+  const values = data?.monthCounts
+
   return (
-    (<div {...props}>
+    (<div>
       <ChartContainer
         config={{
           desktop: {
@@ -280,12 +283,12 @@ function LinechartChart(props) {
         <LineChart
           accessibilityLayer
           data={[
-            { month: "January", desktop: 186 },
-            { month: "February", desktop: 305 },
-            { month: "March", desktop: 237 },
-            { month: "April", desktop: 73 },
-            { month: "May", desktop: 209 },
-            { month: "June", desktop: 214 },
+            { month: months[currentMonth - 5], desktop: values[5] },
+            { month: months[currentMonth - 4], desktop: values[4] },
+            { month: months[currentMonth - 3], desktop: values[3] },
+            { month: months[currentMonth - 2], desktop: values[2] },
+            { month: months[currentMonth - 1], desktop: values[1] },
+            { month: months[currentMonth], desktop: values[0] },
           ]}
           margin={{
             left: 12,

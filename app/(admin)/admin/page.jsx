@@ -29,7 +29,7 @@ export default async function Admin() {
           <div className="grid  border border-white grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <ProductCard data={productsInfo} />
             <ReviewCard data={reviewsInfo.card} />
-            <OrderCard data={ordersInfo} />
+            <OrderCard data={ordersInfo.card} />
             <UserCard data={usersInfo.card} />
           </div>
         </Suspense>
@@ -43,7 +43,7 @@ export default async function Admin() {
 
         <Suspense fallback={<div>Loading...</div>}>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <OrderChart />
+            <OrderChart data={ordersInfo.chart} />
             <UserChart data={usersInfo.chart} />
           </div>
         </Suspense>
