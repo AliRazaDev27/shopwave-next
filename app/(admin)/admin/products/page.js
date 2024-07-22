@@ -41,20 +41,27 @@ import {
 import Link from "next/link"
 import { getProductsByQuery } from "@/lib/actions"
 import { dateFormat } from "@/lib/format"
-import { ShopControlls } from "@/components/shop-controlls"
 import { getCategories } from "@/lib/actions"
+import { SearchControlls } from "@/components/searchControlls"
 
 export default async function Page({ searchParams }) {
   const { page = 1 } = searchParams
   const { search = "" } = searchParams;
   const { categorySlug = "" } = searchParams
   const { sort = "" } = searchParams
+  const categories = await getCategories()
   const { products, count } = await getProductsByQuery(page, search, categorySlug, sort)
   return <div className="">
 
     <div className="flex justify-between items-center my-2 px-2">
-      <h2 className="text-xl font-semibold md:text-2xl">Products</h2>
+      <div className="flex flex-col gap-2">
+        <h2 className="text-xl font-semibold md:text-2xl">Products</h2>
+        <p>Showing <span className="font-bold">{products.length}</span> of {count} products</p>
+      </div>
       <Link href="/admin/products/add"><Button className="me-8 ">Add Product</Button></Link>
+    </div>
+    <div>
+      <SearchControlls _categories={JSON.stringify(categories)} />
     </div>
     <div>
       <Table>
