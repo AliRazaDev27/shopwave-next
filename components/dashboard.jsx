@@ -44,7 +44,7 @@ export function UserChart({ data }) {
     </Card>
   )
 }
-export function ProductChart() {
+export function ProductChart({ data }) {
   return (
     <Card>
       <CardHeader>
@@ -52,7 +52,7 @@ export function ProductChart() {
         <CardDescription>A breakdown of your product inventory and sales.</CardDescription>
       </CardHeader>
       <CardContent>
-        <BarchartChart className="aspect-[16/9]" />
+        <BarchartChart data={data} className="aspect-[16/9]" />
       </CardContent>
     </Card>
   )
@@ -184,12 +184,12 @@ function BarchartChart({ data }) {
         <BarChart
           accessibilityLayer
           data={[
-            { month: months[currentMonth - 5], desktop: values.usersPastMonths[5] },
-            { month: months[currentMonth - 4], desktop: values.usersPastMonths[4] },
-            { month: months[currentMonth - 3], desktop: values.usersPastMonths[3] },
-            { month: months[currentMonth - 2], desktop: values.usersPastMonths[2] },
-            { month: months[currentMonth - 1], desktop: values.usersPastMonths[1] },
-            { month: months[currentMonth], desktop: values.usersPastMonths[0] },
+            { month: months[currentMonth - 5], desktop: values.dataPastMonths[5] },
+            { month: months[currentMonth - 4], desktop: values.dataPastMonths[4] },
+            { month: months[currentMonth - 3], desktop: values.dataPastMonths[3] },
+            { month: months[currentMonth - 2], desktop: values.dataPastMonths[2] },
+            { month: months[currentMonth - 1], desktop: values.dataPastMonths[1] },
+            { month: months[currentMonth], desktop: values.dataPastMonths[0] },
           ]}>
           <CartesianGrid vertical={false} />
           <XAxis
