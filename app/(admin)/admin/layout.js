@@ -1,4 +1,5 @@
 import { signOut } from "@/auth"
+import ThemeSwitch from "@/components/ThemeSwitch"
 import Link from "next/link"
 import {
   Bell,
@@ -152,10 +153,13 @@ export default function Layout({ children }) {
                 </div>
               </form>
             </div>
+            <div className="size-10 p-0  flex justify-center items-center  rounded-full bg-orange-500 hover:bg-orange-600  text-2xl ">
+              <ThemeSwitch />
+            </div>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="secondary" size="icon" className="rounded-full">
-                  <CircleUser className="h-5 w-5" />
+                <Button variant="secondary" size="icon" className="rounded-full bg-blue-600 hover:bg-blue-700">
+                  <CircleUser className="h-5 w-5 text-white" />
                   <span className="sr-only">Toggle user menu</span>
                 </Button>
               </DropdownMenuTrigger>
