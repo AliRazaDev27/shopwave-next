@@ -51,6 +51,9 @@ export default async function Page({ searchParams }) {
   const { sort = "" } = searchParams
   const categories = await getCategories()
   const { products, count } = await getProductsByQuery(page, search, categorySlug, sort)
+  if (products[0].createdAt instanceof Date) {
+    console.log("Type is date")
+  }
   return <div className="">
 
     <div className="flex justify-between items-center my-2 px-2">
