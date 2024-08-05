@@ -1,8 +1,8 @@
 import { ObjectId } from "mongoose";
 import { Brand } from "./types_brand";
-import { Category } from "./types_category";
-import { User } from "./types_user";
-import { Review } from "./types_review";
+import { CategoryType } from "./types_category";
+import { UserType } from "./types_user";
+import { ReviewType } from "./types_review";
 export interface ProductType {
   _id: string;
   title?: string;
@@ -12,10 +12,10 @@ export interface ProductType {
     public_id?: string,
   }
   price?: number;
-  category?: ObjectId | Category;
+  category?: ObjectId | CategoryType;
   brand?: ObjectId | Brand;
-  user?: ObjectId | User;
-  reviews?: ObjectId | Review[];
+  user?: ObjectId | UserType;
+  reviews?: ObjectId | ReviewType[];
   rating?: number;
   stock?: number;
   discountPercentage?: number;
@@ -27,6 +27,7 @@ export interface ProductType {
   }
   createdAt?: Date;
   updatedAt?: Date;
+  quantity?: number;
 }
 export interface ProductQueryResultType {
   products: ProductType[]

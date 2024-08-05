@@ -5,8 +5,12 @@ import product from "@/lib/models/productModel"
 import { revalidatePath } from "next/cache"
 import { auth } from "@/auth"
 import { AuthError } from "next-auth"
+import { ObjectId } from "mongoose"
+import { OrderType } from "../types/types_orders"
+import { ProductType } from "../types/types_product"
+import { string } from "zod"
 
-export async function addOrder(products, formData) {
+export async function addOrder(products: ProductType[], formData: FormData) {
   try {
     const session = await auth()
     const user = session?.user
@@ -18,10 +22,12 @@ export async function addOrder(products, formData) {
     let productArray = []
     for (let item of products) {
       const _product = await product.findById(item._id)
-      const _item = {
+      const _item:any = {
         product: item._id,
         pricePerUnit: _product.price,
-        quantity: item.quantity
+      }
+      if(item.quantity){
+        _item.quantity = item.quantity
       }
       productArray.push(_item)
     }
@@ -30,7 +36,7 @@ export async function addOrder(products, formData) {
     revalidatePath("/cart")
     return { ok: true, error: null }
   }
-  catch (error) {
+  catch (error:any) {
     return { ok: false, error: error.message }
   }
 }
@@ -39,7 +45,7 @@ export async function getOrders() {
   const orders = await order.find({}).populate("user").lean()
   return orders
 }
-export async function deleteOrder(id) {
+export async function deleteOrder(id: ObjectId) {
   try {
     await connectDB()
     const _order = await order.findById(id)
@@ -48,25 +54,26 @@ export async function deleteOrder(id) {
     revalidatePath("/admin/orders")
     return { ok: true, error: null }
   }
-  catch (error) {
+  catch (error:any) {
     return { ok: false, error: error.message }
   }
 }
-export async function getOrder(id) {
+export async function getOrder(id:ObjectId) {
   try {
     await connectDB()
-    const _order = await order.findById(id).populate("user").populate("products.product").lean()
-    // console.log(_order)
+    const _order:OrderType|null = await order.findById(id).populate("user").populate("products.product").lean()
+    if (_order === null) throw new Error("Order not found")
     return JSON.stringify(_order)
   }
-  catch (error) {
+  catch (error:any) {
     return { ok: false, error: error.message }
   }
 }
-export async function updateOrder(id, status) {
+export async function updateOrder(id:ObjectId, status:string) {
   try {
     await connectDB()
     const _order = await order.findById(id)
+    if (!id) throw new Error("Order not found")
     if (!_order) throw new Error("Order not found")
     const OrderStates = ["pending", "processing", "shipped", "delivered", "cancelled", "returned", "failed", "refunded", "completed"]
     if (!OrderStates.includes(status)) throw new Error("Invalid status")
@@ -76,14 +83,15 @@ export async function updateOrder(id, status) {
     revalidatePath("/admin/orders")
     return { ok: true, error: null }
   }
-  catch (error) {
+  catch (error:any) {
     return { ok: false, error: error.message }
   }
 }
 export async function ordersOverview() {
   try {
     await connectDB()
-    const orders = await order.find().select("_id status createdAt").lean()
+    const orders:OrderType[]|null = await order.find().select("_id status createdAt").lean()
+    if (!orders) throw new Error("No orders found")
     const total = orders.length
     const pending = orders.filter((order) => order.status === "pending").length
     const cancelled = orders.filter((order) => order.status === "cancelled").length
@@ -99,7 +107,7 @@ export async function ordersOverview() {
     });
     return { card: { total, pending, cancelled, completed }, chart: { monthCounts, currentMonth: now.getMonth() } }
   }
-  catch (error) {
+  catch (error:any) {
     throw new Error(error.message)
   }
 }
