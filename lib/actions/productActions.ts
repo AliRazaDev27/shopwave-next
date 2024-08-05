@@ -10,7 +10,7 @@ import { uploadImageOnCloudinary, deleteImageFromCloudinary } from "@/lib/cloudi
 import fs from "fs"
 import { ProductType, ProductQueryResultType } from "@/lib/types/types_product"
 import mongoose, { ObjectId } from "mongoose"
-import { User } from "@/lib/types/types_user"
+import { UserType } from "@/lib/types/types_user"
 
 interface SortOptions {
   newest: { createdAt: -1 },
