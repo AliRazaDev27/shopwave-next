@@ -2,25 +2,25 @@
 import { connectDB } from "@/lib/db";
 import review from "@/lib/models/reviewModel";
 import product from "@/lib/models/productModel";
+import { ObjectId } from "mongoose";
+import { ReviewType } from "../types/types_review";
 
-
-export async function getReviews(productID) {
+export async function getReviews(id:ObjectId) {
   try {
     await connectDB()
-    console.log(productID)
-    const reviews = await product.findById(productID).populate("reviews").select("reviews").lean()
-    console.log(`pro...`)
-    console.log(reviews)
+    const reviews:ReviewType[]|null = await product.findById(id).populate("reviews").select("reviews").lean()
+    if(reviews === null) throw new Error("Product not found")
     return reviews
   }
-  catch (error) {
+  catch (error:any) {
     return { ok: false, error: error.message }
   }
 }
 export async function reviewsOverview() {
   try {
     await connectDB()
-    const reviews = await review.find().select("_id rating").lean()
+    const reviews:ReviewType[]|null = await review.find().select("_id rating").lean()
+    if(reviews === null) throw new Error("Reviews not found")
     const total = reviews.length
     const positive = reviews.filter((review) => review.rating > 3).length
     const negative = reviews.filter((review) => review.rating < 3).length
@@ -32,7 +32,7 @@ export async function reviewsOverview() {
     const fiveStars = reviews.filter((review) => review.rating === 5).length
     return { card: { total, positive, negative, average }, chart: { oneStars, twoStars, threeStars, fourStars, fiveStars } }
   }
-  catch (error) {
+  catch (error:any) {
     throw new Error(error.message)
   }
 }
