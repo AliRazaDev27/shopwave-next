@@ -35,6 +35,7 @@ export function SearchControlls({ _categories }) {
     router.push(`${path.toString()}?${new URLSearchParams(data).toString()}`)
   }
   function handleReset() {
+    console.log("handleReset")
     setSearch("")
     setSortOption("")
     setSelectedCategory("")

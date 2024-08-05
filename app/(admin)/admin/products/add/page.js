@@ -115,6 +115,53 @@ export default function Page() {
                   />
                 </div>
               </div>
+            <div className="grid grid-cols-2 gap-2 items-center">
+<div className="grid gap-2 ">
+                  <Label htmlFor="stock">Stock</Label>
+                  <Input
+                    id="stock"
+                    type="number"
+                    name="stock"
+                    placeholder="Product Stock"
+                    required
+                  />
+                </div>
+                <div className="grid gap-2 ">
+                  <Label htmlFor="discount">Discount</Label>
+                  <Input
+                    id="discount"
+                    type="number"
+                    name="discount"
+                    placeholder="Product Discount"
+                    required
+                  />
+                </div>
+
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 items-center">
+<div className="grid gap-2 ">
+                  <Label htmlFor="warranty">Warranty</Label>
+                  <Input
+                    id="warranty"
+                    type="text"
+                    name="warranty"
+                    placeholder="warranty Information"
+                    required
+                  />
+                </div>
+                <div className="grid gap-2 ">
+                  <Label htmlFor="shipping">Shipping</Label>
+                  <Input
+                    id="shipping"
+                    type="text"
+                    name="shipping"
+                    placeholder="shipping Information"
+                    required
+                  />
+                </div>
+
+            </div>
               <div className="grid gap-2">
                 <Label htmlFor="price">Description</Label>
                 <Textarea

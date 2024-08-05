@@ -1,6 +1,7 @@
 function dateFormat(dateString: Date | string): string {
+  console.log(typeof dateString)
   if (dateString === "") {
-    return
+    return "Empty Date String Provided."
   }
   const convertedString: string = JSON.stringify(dateString).slice(1, -1) // remove double quotes from dateString
   const [year, month, time]: string[] = convertedString.split("-")
