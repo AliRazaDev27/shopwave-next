@@ -3,61 +3,67 @@ import { connectDB } from "@/lib/db"
 import user from "@/lib/models/userModel"
 import { revalidatePath } from "next/cache"
 import bcrypt from "bcrypt"
+import { UserType } from "../types/types_user"
+import { ObjectId } from "mongoose"
 
 export async function getUsers() {
   try {
     await connectDB()
-    const users = await user.find({}).lean()
+    const users: UserType[]|null = await user.find({}).lean()
     return users
   }
-  catch (error) {
+  catch (error:any) {
     console.log(error)
     return { ok: false, error: error.message }
   }
 }
-export async function updateUser(id, { name, email, role }) {
+export async function updateUser(id:ObjectId, { name, email, role }:{ name: string, email: string, role: string }) {
   try {
     await connectDB()
     if (!name || !email || !role) throw new Error("Please fill all the fields")
-    const _user = await user.findById(id)
+    const _user:UserType|null = await user.findById(id)
     if (!_user) throw new Error("User not found")
     await user.findByIdAndUpdate(id, { name, email, role: role === "admin" ? 1 : 0 })
     revalidatePath("/admin/users")
     return { ok: true, error: null }
   }
-  catch (error) {
+  catch (error:any) {
     return { ok: false, error: error.message }
   }
 }
-export async function getUser(id) {
+export async function getUser(id:ObjectId) {
   try {
     await connectDB()
-    const _user = await user.findById(id).lean()
+    const _user:UserType|null = await user.findById(id).lean()
+    if(!_user) throw new Error("User not found")
+      else{
     return _user
+      }
   }
-  catch (error) {
+  catch (error:any) {
     return { ok: false, error: error.message }
   }
 }
-export async function deleteUser(id) {
+export async function deleteUser(id:ObjectId) {
   try {
     await connectDB()
-    const _user = await user.findById(id)
+    const _user:UserType|null = await user.findById(id)
     if (!_user) throw new Error("User not found")
     await user.findByIdAndDelete(id)
     revalidatePath("/admin/users")
     return { ok: true, error: null }
   }
-  catch (error) {
+  catch (error:any) {
     return { ok: false, error: error.message }
   }
 }
-export async function createUser(formData) {
-  const { name, email, password } = Object.fromEntries(formData)
-  if (!name || !email || !password) return { ok: false, error: "Please fill all the fields" }
+export async function createUser(formData:FormData) {
+  const { name, email, password }= Object.fromEntries(formData)
+  if (!name || !email || !password) throw new Error("Please fill all the fields")
   const SALT = 10
-  if (password.length < 8) return { ok: false, error: "Password must be at least 8 characters" }
-  const encryptedPassword = await bcrypt.hash(password, SALT)
+
+  if ((password as string).length < 8) return { ok: false, error: "Password must be at least 8 characters" }
+  const encryptedPassword = await bcrypt.hash(password as string, SALT)
   try {
     await connectDB()
     const exist = await user.findOne({ email })
@@ -65,12 +71,13 @@ export async function createUser(formData) {
     const _user = await user.create({ name, email, password: encryptedPassword })
     return { ok: true, error: null }
   }
-  catch (error) { return { ok: false, error: error.message } }
+  catch (error:any) { return { ok: false, error: error.message } }
 }
 export async function usersOverview() {
   try {
     await connectDB()
-    const users = await user.find({}).lean()
+    const users:UserType[]|null = await user.find({}).lean()
+    if(users === null) throw new Error("No users found")
     const total = users.length
     const newUsers = users.filter((user) => user.createdAt > new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).length
     // TODO: add method to ban a user
@@ -94,7 +101,7 @@ export async function usersOverview() {
     }
 
     return { card: { total, newUsers, active, inactive }, chart: { currentMonth, dataPastMonths } }
-  } catch (error) {
+  } catch (error:any) {
     throw new Error(error.message)
   }
 }
