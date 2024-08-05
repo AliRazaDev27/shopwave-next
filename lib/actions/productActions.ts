@@ -101,9 +101,9 @@ const buffer = Buffer.from(await image.arrayBuffer())
       price,
       category,
       stock,
-      discount,
-      warranty,
-      shipping,
+      discountPercentage: discount,
+      warrantyInformation: warranty,
+      shippingInformation: shipping,
       brand: null,
       picture: {
         picture_url: picture?.secure_url,
@@ -170,7 +170,7 @@ export async function updateProduct(id: mongoose.Types.ObjectId, formData: FormD
     await connectDB()
     const _product = await product.findById(id)
     if (!_product) throw new Error("Product not found")
-    const { title, description, price, category, image } = Object.fromEntries(formData)
+    const { title, description, price, category, image, stock,  discount, warranty, shipping } = Object.fromEntries(formData)
     if(image instanceof File){
         if (image.size != 0) {
       if (_product.picture.public_id != "null") {
@@ -183,11 +183,11 @@ export async function updateProduct(id: mongoose.Types.ObjectId, formData: FormD
       fs.unlink(`./public/uploads/${imageName}`, (err) => {
         if (err) console.log(err)
       })
-      await product.findByIdAndUpdate(id, { title, description, price, category, picture: { public_id: _image.public_id, picture_url: _image.secure_url } }, { new: true })
+      await product.findByIdAndUpdate(id, { title, description, price, category,stock, discountPercentage: discount, warrantyInformation: warranty, shippingInformation: shipping ,picture: { public_id: _image.public_id, picture_url: _image.secure_url }, thumbnail: { public_id: _image.public_id, picture_url: _image.secure_url } }, { new: true })
       return { ok: true, error: null }
     }
     else {
-      await product.findByIdAndUpdate(id, { title, description, price, category }, { new: true })
+      await product.findByIdAndUpdate(id, { title, description, price, category,stock, discountPercentage: discount, warrantyInformation: warranty, shippingInformation: shipping }, { new: true })
       return { ok: true, error: null }
     }
     }

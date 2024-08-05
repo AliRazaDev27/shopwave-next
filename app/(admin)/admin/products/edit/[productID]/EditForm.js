@@ -1,4 +1,5 @@
 "use client"
+// import { ProductType } from "@/lib/types/types_product"
 import { useRouter } from "next/navigation"
 import { useToast } from "@/components/ui/use-toast"
 import Image from "next/image"
@@ -31,7 +32,6 @@ export default function EditForm({ _currentProduct, _categories }) {
   const categories = JSON.parse(_categories)
   const updateProductWithID = updateProduct.bind(null, currentProduct._id)
   const [isPending, startTransition] = useTransition()
-  const [error, setError] = useState(null)
   async function handleSubmit(formData) {
     startTransition(async () => {
       const result = await updateProductWithID(formData)
@@ -99,6 +99,53 @@ export default function EditForm({ _currentProduct, _categories }) {
                   />
                 </div>
               </div>
+              <div className="grid grid-cols-2 gap-2 items-center">
+<div className="grid gap-2 ">
+                  <Label htmlFor="stock">Stock</Label>
+                  <Input
+                    id="stock"
+                    type="number"
+                    name="stock"
+                    defaultValue={currentProduct?.stock}
+                    required
+                  />
+                </div>
+                <div className="grid gap-2 ">
+                  <Label htmlFor="discount">Discount</Label>
+                  <Input
+                    id="discount"
+                    type="number"
+                    name="discount"
+                    defaultValue={currentProduct?.discountPercentage}
+                    required
+                  />
+                </div>
+
+            </div>
+
+            <div className="grid grid-cols-2 gap-2 items-center">
+<div className="grid gap-2 ">
+                  <Label htmlFor="warranty">Warranty</Label>
+                  <Input
+                    id="warranty"
+                    type="text"
+                    name="warranty"
+                    defaultValue={currentProduct?.warrantyInformation}
+                    required
+                  />
+                </div>
+                <div className="grid gap-2 ">
+                  <Label htmlFor="shipping">Shipping</Label>
+                  <Input
+                    id="shipping"
+                    type="text"
+                    name="shipping"
+                    defaultValue={currentProduct?.shippingInformation}
+                    required
+                  />
+                </div>
+
+            </div>
               <div className="grid gap-2">
                 <Label htmlFor="price">Description</Label>
                 <Textarea name="description"
