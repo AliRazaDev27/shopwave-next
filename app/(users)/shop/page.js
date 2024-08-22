@@ -48,7 +48,7 @@ export default async function Page({ searchParams }) {
       </div>
       { // TODO: Improve pagination visual indicators and link generation logic
       }
-      <div className="my-4">
+      <div className="py-4">
         <Pagination>
           <PaginationContent>
             <PaginationItem>
