@@ -5,7 +5,6 @@ import { CartProvider } from "@/app/cartContext";
 import { Providers } from "./providers";
 import { WebVitals } from "@/components/web-vitals";
 import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +27,6 @@ export default function RootLayout({ children }) {
             <WebVitals />
             <main>{children}</main>
             <Analytics />
-            <SpeedInsights />
           </Providers>
         </CartProvider>
       </body>
